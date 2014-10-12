@@ -1,0 +1,660 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Node.Js Web开发基础 | Gavin&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Gavin Zhang">
+    
+    <meta name="description" content="web开发基础知识
+最早实现动态网页的方法是使用Perl 和 CGI。在 Perl 程序中输出 HTML 内容,由 HTTP服务器调用 Perl 程序,将结果返回给客户端。但问题在于如果 HTML 内容比较多,维护非常不方便。大概在 2000 年左右,以 ASP、PHP、JSP 的为代表的以模板为基">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="yuexiahandao" />
+    <meta name="twitter:title" content="Node.Js Web开发基础 | Gavin&#39;s Blog" />
+      
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png##img/logo.svg" alt="Gavin&#39;s Blog" title="Gavin&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Gavin&#39;s Blog">Gavin&#39;s Blog</a></h1>
+				<h2 class="blog-motto">Welcome to Gavin Zhang&#39;s personal blog!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/tags">Tags</a></li>
+					
+						<li><a href="/categories">Categories</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/10/12/Node-Js-Web开发基础/" title="Node.Js Web开发基础" itemprop="url">Node.Js Web开发基础</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yuexiahandao.github.com" title="Gavin Zhang">Gavin Zhang</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2014-10-12T01:28:16.000Z" itemprop="datePublished">Oct 12 2014</time>
+    Updated:<time datetime="2014-10-12T08:07:05.000Z" itemprop="dateModified">Oct 12 2014</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#web开发基础知识"><span class="toc-number">1.</span> <span class="toc-text">web开发基础知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Express_框架"><span class="toc-number">2.</span> <span class="toc-text">Express 框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Express快速开始"><span class="toc-number">3.</span> <span class="toc-text">Express快速开始</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装_Express"><span class="toc-number">3.1.</span> <span class="toc-text">安装 Express</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#建立工程"><span class="toc-number">3.2.</span> <span class="toc-text">建立工程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工程的结构"><span class="toc-number">3.3.</span> <span class="toc-text">工程的结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#app-js"><span class="toc-number">3.3.1.</span> <span class="toc-text">app.js</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#routes/index-js"><span class="toc-number">3.3.2.</span> <span class="toc-text">routes/index.js</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#index-ejs"><span class="toc-number">3.3.3.</span> <span class="toc-text">index.ejs</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#layout-ejs"><span class="toc-number">3.3.4.</span> <span class="toc-text">layout.ejs</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#路由控制"><span class="toc-number">4.</span> <span class="toc-text">路由控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#工作原理"><span class="toc-number">4.1.</span> <span class="toc-text">工作原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建路由规则"><span class="toc-number">4.2.</span> <span class="toc-text">创建路由规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#路径匹配"><span class="toc-number">4.3.</span> <span class="toc-text">路径匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#REST_风格的路由规则"><span class="toc-number">4.4.</span> <span class="toc-text">REST 风格的路由规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#控制权转移"><span class="toc-number">4.5.</span> <span class="toc-text">控制权转移</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模板引擎"><span class="toc-number">5.</span> <span class="toc-text">模板引擎</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#页面布局"><span class="toc-number">5.1.</span> <span class="toc-text">页面布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#片段视图"><span class="toc-number">5.2.</span> <span class="toc-text">片段视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#视图助手"><span class="toc-number">5.3.</span> <span class="toc-text">视图助手</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#连接数据库"><span class="toc-number">6.</span> <span class="toc-text">连接数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#会话支持(Session_support)"><span class="toc-number">7.</span> <span class="toc-text">会话支持(Session support)</span></a></li></ol>
+		</div>
+		
+		<h2 id="web开发基础知识">web开发基础知识</h2>
+<p>最早实现动态网页的方法是使用Perl 和 CGI。在 Perl 程序中输出 HTML 内容,由 HTTP服务器调用 Perl 程序,将结果返回给客户端。但问题在于如果 HTML 内容比较多,维护非常不方便。大概在 2000 年左右,以 ASP、PHP、JSP 的为代表的以模板为基础的语言出现了,这种语言的使用方法与 CGI 相反,是在以 HTML 为主的模板中插入程序代码 2 。这种方式在2002年前后非常流行,但它的问题是页面和程序逻辑紧密耦合,任何一个网站规模变大以后,都会遇到结构混乱,难以处理的问题。为了解决这种问题,以 MVC 架构为基础的平台逐渐兴起,著名的 Ruby on Rails、Django、Zend Framework 都是基于 MVC 架构的。我们称 PHP、ASP、JSP 为“模板为中心的架构”.Web 开发架构对比:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特性</th>
+<th style="text-align:center">模板为中心架构</th>
+<th style="text-align:right">MVC 架构</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">页面产生方式</td>
+<td style="text-align:center">执行并替换标签中的语句</td>
+<td style="text-align:right">由模板引擎生成 HTML 页面</td>
+</tr>
+<tr>
+<td style="text-align:left">路径解析</td>
+<td style="text-align:center">对应到文件系统</td>
+<td style="text-align:right">由控制器定义</td>
+</tr>
+<tr>
+<td style="text-align:left">数据访问</td>
+<td style="text-align:center">通过 SQL 语句查询或访问文件系统</td>
+<td style="text-align:right">对象关系模型</td>
+</tr>
+<tr>
+<td style="text-align:left">架构中心</td>
+<td style="text-align:center">脚本语言是静态 HTTP 服务器的扩展</td>
+<td style="text-align:right">静态 HTTP 服务器是脚本语言的补充</td>
+</tr>
+<tr>
+<td style="text-align:left">适用范围</td>
+<td style="text-align:center">小规模网站</td>
+<td style="text-align:right">大规模网站</td>
+</tr>
+<tr>
+<td style="text-align:left">学习难度</td>
+<td style="text-align:center">容易</td>
+<td style="text-align:right">较难</td>
+</tr>
+</tbody>
+</table>
+<p>Node.js 本质上和 Perl 或 C++ 一样,都可以作为 CGI 扩展被调用,但它还可以跳过 HTTP服务器,因为它本身就是。传统的架构中 HTTP 服务器的角色会由 Apache、Nginx、IIS 之类的软件来担任,而 Node.js 不需要 。Node.js 提供了 http 模块,它是由 C++ 实现的,性能可靠,可以直接应用到生产环境。<br>Node.js 和其他的语言相比的另一个显著区别,在于它的原始封装程度较低。例如 PHP 中你可以访问 $_REQUEST 获取客户端的 POST 或 GET 请求,通常不需要直接处理 HTTP 协议。这些语言要求由 HTTP 服务器来调用,因此你需要设置一个 HTTP 服务器来处理客户端的请求,HTTP 服务器通过 CGI 或其他方式调用脚本语言解释器,将运行的结果传递回HTTP 服务器,最终再把内容返回给客户端。而在 Node.js 中,很多工作需要你自己来做(并不是都要自己动手,因为有第三方框架的帮助)。<br>Node.js 虽然提供了 http 模块,却不是让你直接用这个模块进行 Web 开发的。http 模块仅仅是一个 HTTP 服务器内核的封装,你可以用它做任何 HTTP 服务器能做的事情,不仅仅是做一个网站,甚至实现一个 HTTP 代理服务器都行。你如果想用它直接开发网站,那么就必须手动实现所有的东西了,小到一个 POST 请求,大到 Cookie、会话的管理。当你用这种方式建成一个网站的时候,你就几乎已经做好了一个完整的框架了。</p>
+<h2 id="Express_框架">Express 框架</h2>
+<p><a href="http://expressjs.jser.us/" target="_blank" rel="external">http://expressjs.jser.us/</a></p>
+<p>目前最稳定、使用最广泛,而且 Node.js 官方推荐的唯一一个 Web 开发框架。Express ( <a href="http://expressjs.com/" target="_blank" rel="external">http://expressjs.com/</a> ) 除了为 http 模块提供了更高层的接口外,还实现了许多功能,其中包括:</p>
+<ul>
+<li>路由控制;</li>
+<li>模板解析支持;</li>
+<li>动态视图;</li>
+<li>用户会话;</li>
+<li>CSRF 保护;</li>
+<li>静态文件服务;</li>
+<li>错误控制器;</li>
+<li>访问日志;</li>
+<li>缓存;</li>
+<li>插件支持。</li>
+</ul>
+<p>需要指出的是,Express 不是一个无所不包的全能框架,像 Rails 或 Django 那样实现了模板引擎甚至 ORM (Object Relation Model,对象关系模型)。它只是一个轻量级的 Web 框架,多数功能只是对 HTTP 协议中常用操作的封装,更多的功能需要插件或者整合其他模块来完成。</p>
+<figure class="highlight node"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">var</span> app = express();</div><div class="line"><span class="keyword">var</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>);</div><div class="line">app.use(bodyParser());</div><div class="line">app.all(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span><span class="params">(req, res)</span> </span>{</div><div class="line">	<span class="built_in">console</span>.log(req.query.title);</div><div class="line">	<span class="built_in">console</span>.log(req.query.text);</div><div class="line">	<span class="comment">//res.send(req.body.title + req.body.text);</span></div><div class="line">	res.status(<span class="number">200</span>).end(req.query.title + req.query.text);</div><div class="line">});</div><div class="line">app.listen(<span class="number">3000</span>);</div></pre></td></tr></table></figure>
+
+<h2 id="Express快速开始">Express快速开始</h2>
+<h3 id="安装_Express">安装 Express</h3>
+<p>为了使用这个工具,我们需要用全局模式安装Express,因为只有这样我们才能在命令行中使用它。运行以下命令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ npm install -g express</div><div class="line">$ npm install -g express-generator//创建一个APP的功能分离出来为express-generator</div></pre></td></tr></table></figure>
+
+<p>等待数秒后安装完成,我们就可以在命令行下通过 express 命令快速创建一个项目了。在这之前先使用 express —help 查看帮助信息.Express 在初始化一个项目的时候需要指定模板引擎,认支持Jade和ejs.</p>
+<h3 id="建立工程">建立工程</h3>
+<p>通过以下命令建立网站基本结构:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">express <span class="operator">-e</span> microblog</div></pre></td></tr></table></figure>
+
+<p>进入目录中运行 <code>npm install</code>,安装依赖的项目.它自动安装了依赖 ejs 和 express。这是为什么呢?检查目录中的 package.json 文件,文件中 dependencies 属性中有 express 和 ejs 。无参数的 <code>npm install</code> 的功能就是检查当前目录下的 package.json,并自动安装所有指定的依赖。<br>运行项目:<code>$ DEBUG=microblog ./bin/www</code> or <code>npm start</code>(package.json中的script属性)<br>注意node也分开发和产品模式。</p>
+<h3 id="工程的结构">工程的结构</h3>
+<p>现在让我们回过头来看看 Express 都生成了哪些文件。除了 package.json,它只产生了两个 JavaScript 文件 app.js 和 routes/index.js。模板引擎 ejs 也有两个文件 index.ejs 和layout.ejs,此外还有样式表 style.css。</p>
+<h4 id="app-js">app.js</h4>
+<p>app.js 是工程的入口,首先我们导入了 Express 模块,前面已经通过 npm 安装到了本地,在这里可以直接通过require 获取。 routes 是一个文件夹形式的本地模块,即 ./routes/index.js ,它的功能是为指定路径组织返回内容,相当于 MVC 架构中的控制器。通过 express()函数创建了一个应用的实例,后面的所有操作都是针对于这个实例进行的。<br>接下来是三个if,分别指定了通用、开发和产品环境下的参数。<br>app.set 是 Express 的参数设置工具,接受一个键(key)和一个值(value),可用的参数如下所示。</p>
+<ul>
+<li>basepath :基础地址,通常用于 res.redirect() 跳转。</li>
+<li>views :视图文件的目录,存放模板文件。</li>
+<li>view engine :视图模板引擎。</li>
+<li>view options :全局视图参数对象。</li>
+<li>view cache :启用视图缓存。</li>
+<li>case sensitive routes :路径区分大小写。</li>
+<li>strict routing :严格路径,启用后不会忽略路径末尾的“ / ”。</li>
+<li>jsonp callback :开启透明的 JSONP 支持。</li>
+</ul>
+<p>Express 依赖于 connect,提供了大量的中间件,可以通过 app.use 启用.启用了5个中间件: bodyParser 、 methodOverride 、 router 、 static 以及 errorHandler 。bodyParser 的功能是解析客户端请求,通常是通过 POST 发送的内容。 methodOverride用于支持定制的 HTTP 方法.router 是项目的路由支持。 static 供了静态文件支持。errorHandler 是错误控制器。</p>
+<p>app.get(‘/‘, routes.index); 是一个路由控制器,用户如果访问“ / ”路径,则由 routes.index 来控制。最后服务器通过 app.listen(3000); 启动,监听3000端口。</p>
+<h4 id="routes/index-js">routes/index.js</h4>
+<p>app.js 中通过 app.get(‘/‘, routes.index); 将“ / ”路径映射到 exports.index函数下。其中只有一个语句 res.render(‘index’, { title: ‘Express’ }) ,功能是调用模板解析引擎,翻译名为 index 的模板,并传入一个对象作为参数,这个对象只有一个属性,即 title: ‘Express’。</p>
+<h4 id="index-ejs">index.ejs</h4>
+<p>index.ejs 是模板文件,即 routes/index.js 中调用的模板    .它的基础是 HTML 语言,其中包含了形如 &lt;%= title %&gt; 的标签,功能是显示引用的变量,即 res.render 函数第二个参数传入的对象的属性。</p>
+<h4 id="layout-ejs">layout.ejs</h4>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">head</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="title">title</span>&gt;</span><span class="vbscript">&lt;%= title %&gt;</span><span class="tag">&lt;/<span class="title">title</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">'stylesheet'</span> <span class="attribute">href</span>=<span class="value">'/stylesheets/style.css'</span> /&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="title">head</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">body</span>&gt;</span></div><div class="line">		<span class="vbscript">&lt;%- body %&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="title">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>模板文件不是孤立展示的,默认情况下所有的模板都继承自 layout.ejs,即 &lt;%- body %&gt;部分才是独特的内容,其他部分是共有的,可以看作是页面框架。</p>
+<h2 id="路由控制">路由控制</h2>
+<h3 id="工作原理">工作原理</h3>
+<p>有HTTP请求时，app 会解析请求的路径,调用相应的逻辑。app.js 中有一行内容是 app.get(‘/‘, routes.index) ,它的作用是规定路径为“ / ”的 GET 请求由 routes.index 函数处理。 routes.index 通过 res.render(‘index’, { title: ‘Express’ }) 调用视图模板 index ,传递 title变量。最终视图模板生成 HTML 页面,返回给浏览器.<br>浏览器在接收到内容以后,经过分析发现要获取 /stylesheets/style.css,因此会再次向服务器发起请求。app.js 中并没有一个路由规则指派到 /stylesheets/style.css,但 app 通过app.use(express.static(__dirname + ‘/public’)) 配置了静态文件服务器,因此/stylesheets/style.css 会定向到 app.js 所在目录的子目录中的文件 public/stylesheets/style.css.<br><img src="http://ww2.sinaimg.cn/large/7dfb3940jw1el8cw7w3bsj20ep0db0t0.jpg" alt="picture"></p>
+<h3 id="创建路由规则">创建路由规则</h3>
+<p>打开 routes/index.js,在已有的路由规则 router.get(‘/index’, routes.index) 后面添加:</p>
+<figure class="highlight node"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">router.<span class="keyword">get</span>(<span class="string">'/hello'</span>, <span class="function"><span class="keyword">function</span><span class="params">(req, res)</span> </span>{</div><div class="line">  res.render(<span class="string">'hello'</span>, { title: <span class="string">'Hello Express'</span> });<span class="comment">//can write your own string text,here use view/hello.ejs!</span></div><div class="line">});</div></pre></td></tr></table></figure>
+
+<h3 id="路径匹配">路径匹配</h3>
+<p>上面的例子是为固定的路径设置路由规则,Express 还支持更高级的路径匹配模式。例如我们想要展示一个用户的个人页面,路径为 /user/[username],可以用下面的方法定义路由规则:</p>
+<figure class="highlight node"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">router.<span class="built_in">get</span>(<span class="string">'/user/:username'</span>, <span class="function"><span class="keyword">function</span><span class="params">(req, res)</span> {</span></div><div class="line">	<span class="keyword">res</span>.send(<span class="string">'user: '</span> + req.params.username);</div><div class="line">});</div></pre></td></tr></table></figure>
+
+<p><img src="http://ww3.sinaimg.cn/large/7dfb3940jw1el8der3nfaj208002fwee.jpg" alt="results"></p>
+<p>路径规则 /user/:username 会被自动编译为正则表达式,类似于 \/user\/([^\/]+)\/?这样的形式。路径参数可以在响应函数中通过 req.params 的属性访问。路径规则同样支持 JavaScript 正则表达式,例如 router.get(\/user\/([^\/]+)\/?,callback) 。这样的好处在于可以定义更加复杂的路径规则,而不同之处是匹配的参数是匿名的,因此需要通过 req.params[0] 、 req.params[1] 这样的形式访问。</p>
+<h3 id="REST_风格的路由规则">REST 风格的路由规则</h3>
+<p>HTTP 协议定义了以下8种标准的方法。</p>
+<ul>
+<li>GET:请求获取指定资源。</li>
+<li>HEAD:请求指定资源的响应头。</li>
+<li>POST:向指定资源提交数据。</li>
+<li>PUT:请求服务器存储一个资源。</li>
+<li>DELETE:请求服务器删除指定资源。</li>
+<li>TRACE:回显服务器收到的请求,主要用于测试或诊断。</li>
+<li>CONNECT:HTTP/1.1 协议中预留给能够将连接改为管道方式的代理服务器。</li>
+<li>OPTIONS:返回服务器支持的HTTP请求方法。</li>
+</ul>
+<p>其中我们经常用到的是 GET、POST、PUT 和 DELETE 方法。根据 REST 设计模式,这4种方法通常分别用于实现以下功能。</p>
+<ul>
+<li>GET:获取</li>
+<li>POST:新增</li>
+<li>PUT:更新</li>
+<li>DELETE:删除</li>
+</ul>
+<p>REST风格HTTP 请求的特点:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">请求方式</th>
+<th style="text-align:center">安全</th>
+<th style="text-align:center">幂等</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">GET</td>
+<td style="text-align:center">是</td>
+<td style="text-align:center">是</td>
+</tr>
+<tr>
+<td style="text-align:center">POST</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">否</td>
+</tr>
+<tr>
+<td style="text-align:center">PUT</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">是</td>
+</tr>
+<tr>
+<td style="text-align:center">DELETE</td>
+<td style="text-align:center">否</td>
+<td style="text-align:center">是</td>
+</tr>
+</tbody>
+</table>
+<p>所谓安全是指没有副作用,即请求不会对资源产生变动,连续访问多次所获得的结果不受访问者的影响。而幂等指的是重复请求多次与一次请求的效果是一样的,比如获取和更新操作是幂等的,这与新增不同。删除也是幂等的,即重复删除一个资源,和删除一次是一样的。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">请求方式</th>
+<th style="text-align:center">绑定函数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">GET</td>
+<td style="text-align:center">app.get(path, callback)</td>
+</tr>
+<tr>
+<td style="text-align:center">POST</td>
+<td style="text-align:center">app.post(path, callback)</td>
+</tr>
+<tr>
+<td style="text-align:center">PUT</td>
+<td style="text-align:center">app.put(path, callback)</td>
+</tr>
+<tr>
+<td style="text-align:center">DELETE</td>
+<td style="text-align:center">app.delete(path, callback)</td>
+</tr>
+<tr>
+<td style="text-align:center">PATCH</td>
+<td style="text-align:center">app.patch(path, callback)</td>
+</tr>
+<tr>
+<td style="text-align:center">TRACE</td>
+<td style="text-align:center">app.trace(path, callback)</td>
+</tr>
+<tr>
+<td style="text-align:center">CONNECT</td>
+<td style="text-align:center">app.connect(path, callback)</td>
+</tr>
+<tr>
+<td style="text-align:center">OPTIONS</td>
+<td style="text-align:center">app.options(path, callback)</td>
+</tr>
+<tr>
+<td style="text-align:center">所有方法</td>
+<td style="text-align:center">app.all(path, callback)</td>
+</tr>
+</tbody>
+</table>
+<p>需要注意的是 app.all 函数,它支持把所有的请求方式绑定到同一个响应函数,是一个非常灵活的函数,在后面我们可以看到许多功能都可以通过它来实现。</p>
+<h3 id="控制权转移">控制权转移</h3>
+<p>Express 支持同一路径绑定多个路由响应函数.但当你访问任何被这两条同样的规则匹配到的路径时,会发现请求总是被前一条路由规则捕获,后面的规则会被忽略。原因是 Express 在处理路由规则时,会优先匹配先定义的路由规则,因此后面相同的规则被屏蔽.</p>
+<p>Express 提供了路由控制权转移的方法,即回调函数的第三个参数 next ,通过调用next() ,会将路由控制权转移给后面的规则,例如:</p>
+<figure class="highlight node"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">app.<span class="keyword">all</span>(<span class="string">'/user/:username'</span>, <span class="function"><span class="keyword">function</span><span class="params">(req, res, next)</span> {</span></div><div class="line">	console.<span class="built_in">log</span>(<span class="string">'all methods captured'</span>);</div><div class="line">	<span class="keyword">next</span>();//attention here</div><div class="line">});</div><div class="line">app.<span class="built_in">get</span>(<span class="string">'/user/:username'</span>, <span class="function"><span class="keyword">function</span><span class="params">(req, res)</span> {</span></div><div class="line">	<span class="keyword">res</span>.send(<span class="string">'user: '</span> + req.params.username);</div><div class="line">});</div></pre></td></tr></table></figure>
+
+<p><strong>这是一个非常有用的工具,可以让我们轻易地实现中间件,而且还能提高代码的复用程度。</strong></p>
+<h2 id="模板引擎">模板引擎</h2>
+<p>模板引擎随着规模的扩大它会遇到许多问题,下面列举几个主要的:</p>
+<ul>
+<li>页面功能逻辑与页面布局样式耦合,网站规模变大以后逐渐难以维护。</li>
+<li>语法复杂,对于非技术的网页设计者来说门槛较高,难以学习。</li>
+<li>功能过于全面,页面设计者可以在页面上编程,不利于功能划分,也使模板解析效率降低。</li>
+</ul>
+<p>模板引擎的功能是将页面模板和要显示的数据结合起来生成 HTML 页面。它既可以运行在服务器端又可以运行在客户端,大多数时候它都在服务器端直接被解析为 HTML,解析完成后再传输给客户端,因此客户端甚至无法判断页面是否是模板引擎生成的。有时候模板引擎也可以运行在客户端,即浏览器中,典型的代表就是 XSLT,它以 XML 为输入,在客户端生成 HTML 页面。但是由于浏览器兼容性问题,XSLT 并不是很流行。目前的主流还是由服务器运行模板引擎。<br>模板引擎在 MVC 架构中的位置:<br><img src="http://ww3.sinaimg.cn/large/7dfb3940jw1el8e2o6iowj20es0910t2.jpg" alt="pictrue"><br>基于 JavaScript 的模板引擎有许多种实现,我们推荐使用 ejs (Embedded JavaScript),因为它十分简单,而且与 Express 集成良好。由于它是标准 JavaScript 实现的,因此它不仅可以运行在服务器端,还可以运行在浏览器中。我们这一章的示例是在服务器端运行 ejs,这样减少了对浏览器的依赖,而且更符合传统架构的习惯。<br>我们在 app.js 中通过以下两个语句设置了模板引擎和页面模板的位置:</p>
+<figure class="highlight node"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">app.<span class="keyword">set</span>(<span class="string">'views'</span>, path.<span class="keyword">join</span>(__dirname, <span class="string">'views'</span>));</div><div class="line">app.<span class="keyword">set</span>(<span class="string">'view engine'</span>, <span class="string">'ejs'</span>);</div></pre></td></tr></table></figure>
+
+<p>表明要使用的模板引擎是 ejs,页面模板在 views 子目录下。</p>
+<figure class="highlight node"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">router.<span class="keyword">get</span>(<span class="string">'/hello'</span>, <span class="function"><span class="keyword">function</span><span class="params">(req, res)</span> </span>{</div><div class="line">  res.render(<span class="string">'hello'</span>, { title: <span class="string">'Hello Express'</span> });<span class="comment">//调用模板引擎 </span></div><div class="line">});</div></pre></td></tr></table></figure>
+
+<p>res.render 的功能是调用模板引擎,并将其产生的页面直接返回给客户端。它接受两个参数,第一个是模板的名称,即 views 目录下的模板文件名,不包含文件的扩展名;第二个参数是传递给模板的数据,用于模板翻译。<br>我们可以用它们实现页面模板系统能实现的任何内容。ejs 的标签系统非常简单,它只有以下3种标签。</p>
+<ul>
+<li>&lt;% code %&gt; :JavaScript 代码。</li>
+<li>&lt;%= code %&gt; :显示替换过 HTML 特殊字符的内容。</li>
+<li>&lt;%- code %&gt; :显示原始 HTML 内容。</li>
+</ul>
+<h3 id="页面布局">页面布局</h3>
+<p>Express4 use layout(default didn’t use this).</p>
+<ol>
+<li>安装express-partials。运行cmd用npm install express-partials,或者在package.json里面的dependencies添加”express-partials”: “*”。然后运行cmd并切换至项目目录运行npm install获得最新版。</li>
+<li>app.js里面引用express-partials。<br>步骤一：添加引用var partials = require(‘express-partials’);<br>步骤二：在app.set(‘view engine’, ‘ejs’);下面添加app.use(partials());</li>
+<li>在需要引用模板的地方调用layout:’模版名称’</li>
+</ol>
+<figure class="highlight node"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">app.get(<span class="string">'/路径'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(req, res)</span></span> {</div><div class="line">	res.render(<span class="string">'.ejs文件的名字'</span>, {title: <span class="string">'定义标题'</span>,layout:<span class="string">'模版名称'</span>});</div><div class="line">	//res.render(<span class="string">'.ejs文件的名字'</span>, {title: <span class="string">'定义标题'</span>});</div><div class="line">});</div></pre></td></tr></table></figure>
+
+<p>按照以上方案执行后，确实可以正常引用layout模板了，在Express3.x中，新建一个layout.ejs后，通过&lt;%-body %&gt;来引用其它内容。</p>
+<h3 id="片段视图">片段视图</h3>
+<p>Express 的视图系统还支持片段视图 (partials),它就是一个页面的片段,通常是重复的内容,用于迭代显示。通过它你可以将相对独立的页面块分割出去,而且可以避免显式地使用 for 循环。</p>
+<figure class="highlight ejs"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">ul</span>&gt;</span><span class="vbscript">&lt;%- partial(<span class="comment">'listitem', items) %&gt;</span></span><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>partial 是一个可以在视图中使用函数,它接受两个参数,第一个是片段视图的名称,第二个可以是一个对象或一个数组,如果是一个对象,那么片段视图中上下文变量引用的就是这个对象;如果是一个数组,那么其中每个元素依次被迭代应用到片段视图。片段视图中上下文变量名就是视图文件名.</p>
+<h3 id="视图助手">视图助手</h3>
+<p>Express 提供了一种叫做视图助手的工具,它的功能是允许在视图中访问一个全局的函数或对象,不用每次调用视图解析的时候单独传入。前面提到的 partial 就是一个视图助手。<br>视图助手有两类,分别是静态视图助手和动态视图助手。这两者的差别在于,静态视图助手可以是任何类型的对象,包括接受任意参数的函数,但访问到的对象必须是与用户请求无关的,而动态视图助手只能是一个函数,这个函数不能接受参数,但可以访问 req 和 res 对象。<br>静态视图助手可以通过 app.helpers() 函数注册,它接受一个对象,对象的每个属性名称为视图助手的名称,属性值对应视图助手的值。动态视图助手则通过 app.dynamicHelpers()注册,方法与静态视图助手相同,但每个属性的值必须为一个函数,该函数提供 req 和 res ,参见下面这个示例:</p>
+<figure class="highlight node"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> util = <span class="built_in">require</span>(<span class="string">'util'</span>);</div><div class="line">app.helpers({</div><div class="line">	inspect: <span class="function"><span class="keyword">function</span><span class="params">(obj)</span> </span>{</div><div class="line">		<span class="keyword">return</span> util.inspect(obj, <span class="literal">true</span>);</div><div class="line">	}</div><div class="line">});</div><div class="line">app.dynamicHelpers({</div><div class="line">	headers: <span class="function"><span class="keyword">function</span><span class="params">(req, res)</span> </span>{</div><div class="line">		<span class="keyword">return</span> req.headers;</div><div class="line">	}</div><div class="line">});</div><div class="line">app.get(<span class="string">'/helper'</span>, <span class="function"><span class="keyword">function</span><span class="params">(req, res)</span> </span>{</div><div class="line">	res.render(<span class="string">'helper'</span>, {</div><div class="line">		title: <span class="string">'Helpers'</span></div><div class="line">	});</div><div class="line">});</div></pre></td></tr></table></figure>
+
+<p>使用时：&lt;%=inspect(headers)%&gt;<br>视图助手的本质其实就是给所有视图注册了全局变量,因此无需每次在调用模板引擎时传递数据对象。当我们在后面使用 session 时会发现它是非常有用的。</p>
+<h2 id="连接数据库">连接数据库</h2>
+<p>打开工程目录中的 package.json,在 dependencies 属性中添加一行代码:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">	"<span class="attribute">name</span>": <span class="value"><span class="string">"microblog"</span></span></div><div class="line">	, "<span class="attribute">version</span>": <span class="value"><span class="string">"0.0.1"</span></span></div><div class="line">	, "<span class="attribute">private</span>": <span class="value"><span class="literal">true</span></span></div><div class="line">	, "<span class="attribute">dependencies</span>": <span class="value">{</span></div><div class="line">		"<span class="attribute">express</span>": <span class="value"><span class="string">"2.5.8"</span></span></div><div class="line">		, "<span class="attribute">ejs</span>": <span class="value"><span class="string">"&gt;= 0.0.1"</span></span></div><div class="line">		, "<span class="attribute">mongodb</span>": <span class="value"><span class="string">"&gt;= 0.9.9"</span></span></div><div class="line">	}</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>然后运行 npm install 更新依赖的模块。接下来在工程的目录中创建 settings.js 文件,这个文件用于保存数据库的连接信息。我们将用到的数据库命名为 microblog,数据库服务器在本地,因此Settings.js文件的内容如下:</p>
+<figure class="highlight node"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="module"><span class="keyword">module</span>.exports = </span>{</div><div class="line">	cookieSecret: <span class="string">'microblogbyvoid'</span>,</div><div class="line">	db: <span class="string">'microblog'</span>,</div><div class="line">	host: <span class="string">'localhost'</span>,</div><div class="line">};</div></pre></td></tr></table></figure>
+
+<p>其中, db 是数据库的名称, host 是数据库的地址。 cookieSecret 用于 Cookie 加密与数据库无关.<br>接下来在 models 子目录中创建 db.js,内容是:</p>
+<figure class="highlight node"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> settings = <span class="built_in">require</span>(<span class="string">'../settings'</span>);</div><div class="line"><span class="keyword">var</span> Db = <span class="built_in">require</span>(<span class="string">'mongodb'</span>).Db;</div><div class="line"><span class="keyword">var</span> Connection = <span class="built_in">require</span>(<span class="string">'mongodb'</span>).Connection;</div><div class="line"><span class="keyword">var</span> Server = <span class="built_in">require</span>(<span class="string">'mongodb'</span>).Server;</div><div class="line"><span class="built_in">module</span>.exports = <span class="keyword">new</span> Db(settings.db, <span class="keyword">new</span> Server(settings.host, Connection.DEFAULT_PORT, {}));</div></pre></td></tr></table></figure>
+
+<p>以上代码通过 module.exports 输出了创建的数据库连接,由于模块只会被加载一次,以后我们在其他文件中使用时均为这一个实例。</p>
+<h2 id="会话支持(Session_support)">会话支持(Session support)</h2>
+<p>会话是一种持久的网络协议,用于完成服务器和客户端之间的一些交互行为。会话是一个比连接粒度更大的概念,一次会话可能包含多次连接,每次连接都被认为是会话的一次操作。在网络应用开发中,有必要实现会话以帮助用户交互。例如网上购物的场景,用户浏览了多个页面,购买了一些物品,这些请求在多次连接中完成。许多应用层网络协议都是由会话支持的,如 FTP、 Telnet 等,而 HTTP 协议是无状态的,本身不支持会话,因此在没有额外手段的帮助下,前面场景中服务器不知道用户购买了什么。<br>为了在无状态的 HTTP 协议之上实现会话,Cookie 诞生了。Cookie 是一些存储在客户端的信息,每次连接的时候由浏览器向服务器递交,服务器也向浏览器发起存储 Cookie 的请求,依靠这样的手段服务器可以识别客户端。我们通常意义上的 HTTP 会话功能就是这样实现的。具体来说,浏览器首次向服务器发起请求时,服务器生成一个唯一标识符并发送给客户端浏览器,浏览器将这个唯一标识符存储在 Cookie 中,以后每次再发起请求,客户端浏览器都会向服务器传送这个唯一标识符,服务器通过这个唯一标识符来识别用户。<br>对于开发者来说,我们无须关心浏览器端的存储,需要关注的仅仅是如何通过这个唯一标识符来识别用户。很多服务端脚本语言都有会话功能,如 PHP,把每个唯一标识符存储到文件中。Express 也提供了会话中间件,默认情况下是把用户信息存储在内存中,但我们既然已经有了 MongoDB,不妨把会话信息存储在数据库中,便于持久维护。为了使用这一功能,我们首先要获得一个叫做 connect-mongo 的模块,在 package.json 中添加一行代码:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">	"<span class="attribute">name</span>": <span class="value"><span class="string">"microblog"</span></span></div><div class="line">	, "<span class="attribute">version</span>": <span class="value"><span class="string">"0.0.1"</span></span></div><div class="line">	, "<span class="attribute">private</span>": <span class="value"><span class="literal">true</span></span></div><div class="line">	, "<span class="attribute">dependencies</span>": <span class="value">{</span></div><div class="line">		"<span class="attribute">express</span>": <span class="value"><span class="string">"2.5.8"</span></span></div><div class="line">		, "<span class="attribute">ejs</span>": <span class="value"><span class="string">"&gt;= 0.0.1"</span></span></div><div class="line">		, "<span class="attribute">connect-mongo</span>": <span class="value"><span class="string">"&gt;= 0.1.7"</span></span></div><div class="line">		, "<span class="attribute">mongodb</span>": <span class="value"><span class="string">"&gt;= 0.9.9"</span></span></div><div class="line">	}</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>运行 npm install 获得模块。然后打开 app.js,添加以下内容:</p>
+<figure class="highlight node"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> MongoStore = <span class="keyword">require</span>(<span class="string">'connect-mongo'</span>);</div><div class="line"><span class="keyword">var</span> settings = <span class="keyword">require</span>(<span class="string">'../settings'</span>);</div><div class="line">app.configure(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">	app.set(<span class="string">'views'</span>, __dirname + <span class="string">'/views'</span>);</div><div class="line">	app.set(<span class="string">'view engine'</span>, <span class="string">'ejs'</span>);</div><div class="line">	app.<span class="keyword">use</span>(express.bodyParser());</div><div class="line">	app.<span class="keyword">use</span>(express.methodOverride());</div><div class="line">	app.<span class="keyword">use</span>(express.cookieParser());</div><div class="line">	app.<span class="keyword">use</span>(express.session({</div><div class="line">		secret: settings.cookieSecret,</div><div class="line">		store: <span class="keyword">new</span> MongoStore({</div><div class="line">			db: settings.db</div><div class="line">		})</div><div class="line">	}));</div><div class="line">	app.<span class="keyword">use</span>(app.router);</div><div class="line">	app.<span class="keyword">use</span>(express.<span class="keyword">static</span>(__dirname + <span class="string">'/public'</span>));</div><div class="line">});</div></pre></td></tr></table></figure>
+
+<p>其中 express.cookieParser() 是 Cookie 解析的中间件。 express.session() 则提供会话支持,设置它的 store 参数为 MongoStore 实例,把会话信息存储到数据库中,以避免丢失。在后面的小节中,我们可以通过 req.session 获取当前用户的会话对象,以维护用户相关的信息。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/NodeJs/">NodeJs</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/NodeJs/">NodeJs</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a class="jiathis_button_twitter">Twitter</a>
+    <a class="jiathis_button_evernote">EverNote</a>
+    <a href="http://www.jiathis.com/share?uid=1501277" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2014/10/11/有用的技术站点/"  title="有用的技术站点">
+ <strong>NEXT:</strong><br/> 
+ <span>有用的技术站点
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#web开发基础知识"><span class="toc-number">1.</span> <span class="toc-text">web开发基础知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Express_框架"><span class="toc-number">2.</span> <span class="toc-text">Express 框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Express快速开始"><span class="toc-number">3.</span> <span class="toc-text">Express快速开始</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装_Express"><span class="toc-number">3.1.</span> <span class="toc-text">安装 Express</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#建立工程"><span class="toc-number">3.2.</span> <span class="toc-text">建立工程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工程的结构"><span class="toc-number">3.3.</span> <span class="toc-text">工程的结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#app-js"><span class="toc-number">3.3.1.</span> <span class="toc-text">app.js</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#routes/index-js"><span class="toc-number">3.3.2.</span> <span class="toc-text">routes/index.js</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#index-ejs"><span class="toc-number">3.3.3.</span> <span class="toc-text">index.ejs</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#layout-ejs"><span class="toc-number">3.3.4.</span> <span class="toc-text">layout.ejs</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#路由控制"><span class="toc-number">4.</span> <span class="toc-text">路由控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#工作原理"><span class="toc-number">4.1.</span> <span class="toc-text">工作原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建路由规则"><span class="toc-number">4.2.</span> <span class="toc-text">创建路由规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#路径匹配"><span class="toc-number">4.3.</span> <span class="toc-text">路径匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#REST_风格的路由规则"><span class="toc-number">4.4.</span> <span class="toc-text">REST 风格的路由规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#控制权转移"><span class="toc-number">4.5.</span> <span class="toc-text">控制权转移</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模板引擎"><span class="toc-number">5.</span> <span class="toc-text">模板引擎</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#页面布局"><span class="toc-number">5.1.</span> <span class="toc-text">页面布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#片段视图"><span class="toc-number">5.2.</span> <span class="toc-text">片段视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#视图助手"><span class="toc-number">5.3.</span> <span class="toc-text">视图助手</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#连接数据库"><span class="toc-number">6.</span> <span class="toc-text">连接数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#会话支持(Session_support)"><span class="toc-number">7.</span> <span class="toc-text">会话支持(Session support)</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">Archives</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">9</span></li></ul>
+  </div>
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/NodeJs/" title="NodeJs">NodeJs<sup>5</sup></a></li>
+		
+			<li><a href="/categories/git-submodule/" title="git submodule">git submodule<sup>1</sup></a></li>
+		
+			<li><a href="/categories/ubuntu快捷键/" title="ubuntu快捷键">ubuntu快捷键<sup>1</sup></a></li>
+		
+			<li><a href="/categories/useful-website/" title="useful_website">useful_website<sup>1</sup></a></li>
+		
+			<li><a href="/categories/zhong/" title="zhong">zhong<sup>0</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>5</sup></a></li>
+		
+			<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+		
+			<li><a href="/tags/ss/" title="ss">ss<sup>0</sup></a></li>
+		
+			<li><a href="/tags/ubuntu/" title="ubuntu">ubuntu<sup>1</sup></a></li>
+		
+			<li><a href="/tags/useful/" title="useful">useful<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">Tag Cloud</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/NodeJs/" style="font-size: 20.00px;">NodeJs</a><a href="/tags/git/" style="font-size: 15.00px;">git</a><a href="/tags/ss/" style="font-size: 10.00px;">ss</a><a href="/tags/ubuntu/" style="font-size: 15.00px;">ubuntu</a><a href="/tags/useful/" style="font-size: 15.00px;">useful</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://yuexiahandao.github.com" target="_blank" title="Gavin Zhang">Gavin's Blog</a></li>
+      <li><a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Welcome to Gavin Zhang&#39;s personal blog! <br/>
+			Welcome visiting</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/u/2113616192" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/yuexiahandao" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/yuexiahandao" target="_blank" title="github"></a>
+		
+		
+		<a href="https://www.facebook.com/gavinzhang" target="_blank" title="facebook"></a>
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2014 
+		
+		<a href="http://yuexiahandao.github.com" target="_blank" title="Gavin Zhang">Gavin Zhang</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'null', 'null');  
+ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>
