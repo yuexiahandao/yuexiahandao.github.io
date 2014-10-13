@@ -1,0 +1,543 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Python基础 | Gavin&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Gavin Zhang">
+    
+    <meta name="description" content="网上中文资料：
+
+http://woodpecker.org.cn/diveintopython/index.html
+http://www.pythondoc.com/pythontutorial27/index.html
+
+Python的简介
+可以源码安装也可以安装包安装。Python 扮演着两">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="yuexiahandao" />
+    <meta name="twitter:title" content="Python基础 | Gavin&#39;s Blog" />
+      
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png##img/logo.svg" alt="Gavin&#39;s Blog" title="Gavin&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Gavin&#39;s Blog">Gavin&#39;s Blog</a></h1>
+				<h2 class="blog-motto">Welcome to Gavin Zhang&#39;s personal blog!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/tags">Tags</a></li>
+					
+						<li><a href="/categories">Categories</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/10/13/Python基础/" title="Python基础" itemprop="url">Python基础</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yuexiahandao.github.com" title="Gavin Zhang">Gavin Zhang</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2014-10-13T06:21:23.000Z" itemprop="datePublished">Oct 13 2014</time>
+    Updated:<time datetime="2014-10-13T13:38:18.000Z" itemprop="dateModified">Oct 13 2014</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Python的简介"><span class="toc-number">1.</span> <span class="toc-text">Python的简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将_Python_当做计算器"><span class="toc-number">2.</span> <span class="toc-text">将 Python 当做计算器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串"><span class="toc-number">3.</span> <span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于_Unicode"><span class="toc-number">4.</span> <span class="toc-text">关于 Unicode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#列表(list)"><span class="toc-number">5.</span> <span class="toc-text">列表(list)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#交互式命令行基础"><span class="toc-number">6.</span> <span class="toc-text">交互式命令行基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#深入_Python_流程控制"><span class="toc-number">7.</span> <span class="toc-text">深入 Python 流程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#if_语句"><span class="toc-number">7.1.</span> <span class="toc-text">if 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for_语句"><span class="toc-number">7.2.</span> <span class="toc-text">for 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#range()_函数"><span class="toc-number">7.3.</span> <span class="toc-text">range() 函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#break_和_continue_语句,_以及循环中的_else_子句"><span class="toc-number">7.4.</span> <span class="toc-text">break 和 continue 语句, 以及循环中的 else 子句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass_语句"><span class="toc-number">7.5.</span> <span class="toc-text">pass 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义函数"><span class="toc-number">7.6.</span> <span class="toc-text">定义函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#默认参数值"><span class="toc-number">7.6.1.</span> <span class="toc-text">默认参数值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关键字参数"><span class="toc-number">7.6.2.</span> <span class="toc-text">关键字参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可变参数列表"><span class="toc-number">7.6.3.</span> <span class="toc-text">可变参数列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参数列表的分拆"><span class="toc-number">7.6.4.</span> <span class="toc-text">参数列表的分拆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Lambda_形式"><span class="toc-number">7.6.5.</span> <span class="toc-text">Lambda 形式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文档字符串"><span class="toc-number">8.</span> <span class="toc-text">文档字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编码风格"><span class="toc-number">9.</span> <span class="toc-text">编码风格</span></a></li></ol>
+		</div>
+		
+		<p>网上中文资料：</p>
+<ul>
+<li><a href="http://woodpecker.org.cn/diveintopython/index.html" target="_blank" rel="external">http://woodpecker.org.cn/diveintopython/index.html</a></li>
+<li><a href="http://www.pythondoc.com/pythontutorial27/index.html" target="_blank" rel="external">http://www.pythondoc.com/pythontutorial27/index.html</a></li>
+</ul>
+<h2 id="Python的简介">Python的简介</h2>
+<p>可以源码安装也可以安装包安装。Python 扮演着两种角色。首先它是一个脚本解释器，可以从命令行运行脚本，也可以在脚本上双击，像运行其他应用程序一样。它还是一个交互 shell，可以执行任意的语句和表达式。这一点对调试、快速组建和测试相当有用。我甚至知道一些人把 Python 的交互 shell 当作计算器来使用！</p>
+<p>下面的例子中，输入和输出分别由大于号和句号提示符（ &gt;&gt;&gt; 和 … ）标注：如果想重现这些例子，就要在解释器的提示符后，输入（提示符后面的）那些不包含提示符的代码行。需要注意的是在练习中遇到的从属提示符表示<strong><em>你需要在最后多输入一个空行</em></strong>，解释器才能知道这是一个多行命令的结束。</p>
+<p>Python的注释以#开头。</p>
+<h2 id="将_Python_当做计算器">将 Python 当做计算器</h2>
+<p>复数也得到支持；带有后缀 j 或 J 就被视为虚数。带有非零实部的复数写为 (real+imagj) ，或者可以用 complex(real, imag) 函数创建。复数的实部和虚部总是记为两个浮点数。要从复数 z 中提取实部和虚部，使用 z.real 和 z.imag 。函数 abs(z) 用于获取其模（浮点数）.交互模式中，最近一个表达式的值赋给变量 _ 。这样我们就可以把它当作一个桌面计算器，很方便的用于连续计算.此变量对于用户是只读的。不要尝试给它赋值 —— 你只会创建一个独立的同名局部变量，它屏蔽了系统内置变量的魔术效果。</p>
+<h2 id="字符串">字符串</h2>
+<p>print 语句可以生成可读性更好的输出。字符串文本有几种方法分行。可以使用反斜杠为行结尾的连续字符串，它表示下一行在逻辑上是本行的后续内容,需要注意的是，在字符串中写入 \n ——结尾的反斜杠会被忽略。另外，字符串可以标识在一对三引号中： “”” 或 ‘’’ 。三引号中，不需要行属转义，它们已经包含在字符串中.</p>
+<p>字符串可以由 + 操作符连接（粘到一起），可以由 * 重复.</p>
+<p>相邻的两个字符串文本自动连接在一起，前面那行代码也可以写为 word =’Help’ ‘A’;它只用于两个字符串文本，不能用于字符串表达式.</p>
+<p>字符串也可以被截取（检索）。类似于 C ，字符串的第一个字符索引为 0 。没有独立的字符类型，字符就是长度为 1 的字符串。可以用 切片标注 法截取字符串：由两个索引分割的复本。索引切片可以有默认值，切片时，忽略第一个索引的话，默认为 0，忽略第二个索引，默认为字符串的长度.Python 能够优雅地处理那些没有意义的切片索引：一个过大的索引值（即下标值大于字符串实际长度）将被字符串实际长度所代替，当上边界比下边界大时（即切片左值大于右值）就返回空字符串。索引也可以是负数，这将导致从右边开始计算。请注意 -0 实际上就是 0 ，所以它不会导致从右边开始计算！</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>word[<span class="number">4</span>]</div><div class="line"><span class="string">'A'</span></div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>word[<span class="number">0</span>:<span class="number">2</span>]</div><div class="line"><span class="string">'He'</span></div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>word[<span class="number">2</span>:<span class="number">4</span>]</div><div class="line"><span class="string">'lp'</span></div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>word[:<span class="number">2</span>]    <span class="comment"># The first two characters</span></div><div class="line"><span class="string">'He'</span></div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>word[<span class="number">2</span>:]    <span class="comment"># Everything except the first two characters</span></div><div class="line"><span class="string">'lpA'</span></div></pre></td></tr></table></figure>
+
+<p>Python 字符串不可变。向字符串文本的某一个索引赋值会引发错误.</p>
+<p>内置函数 len() 返回字符串长度.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">len(word)</div></pre></td></tr></table></figure>
+
+<h2 id="关于_Unicode">关于 Unicode</h2>
+<p>从 Python 2.0 起，程序员们有了一个新的，用来存储文本数据的类型：Unicode 对象。在 Python 中创建 Unicode 字符串和创建普通的字符串一样简单:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="string">u'Hello World !'</span></div><div class="line"><span class="string">u'Hello World !'</span></div><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="string">u'Hello\u0020World !'</span></div><div class="line"><span class="string">u'Hello World !'</span></div></pre></td></tr></table></figure>
+
+<p>特别的，和普通字符串一样， Unicode 字符串也有原始模式。可以在引号前加 “ur”，Python 会采用 Raw-Unicode-Escape 编码（原始 Unicode 转义——译者）。如果有前缀为 ‘u’ 的数值，它也只会显示为 uXXXX 。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="string">ur'Hello\u0020World !'</span></div><div class="line"><span class="string">u'Hello World !'</span></div></pre></td></tr></table></figure>
+
+<p>作为这些编码标准的一部分，Python 提供了基于已知编码来创建 Unicode 字符串的整套方法。内置函数 unicode() 可以使用所有注册的 Unicode 编码（ COders 和 DECoders ）。 众所周知， Latin-1 ， ASCII ， UTF-8 和 UTF-16 之类的编码可以互相转换.将一个 Unicode 字符串打印或写入到文件中，或者使用 str() 转换时，转换操作以此为默认编码。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; u"abc"</div><div class="line">u'abc'</div><div class="line">&gt;&gt;&gt; str(u"abc")</div><div class="line">'abc'</div><div class="line">&gt;&gt;&gt; u"盲枚眉"</div><div class="line">u'\xe4\xf6\xfc'</div><div class="line">&gt;&gt;&gt; str(u"盲枚眉")</div><div class="line">Traceback (most recent call last):</div><div class="line">  File "&lt;stdin&gt;", line 1, in ?</div><div class="line">UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-2: ordinal not in range(128)</div></pre></td></tr></table></figure>
+
+<p>为了将一个 Unicode 字符串转换为一个使用特定编码的 8 位字符串， Unicode 对象提供一个 encode() 方法，它接受编码名作为参数。编码名应该小写。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="string">u"盲枚眉"</span>.encode(<span class="string">'utf-8'</span>)</div><div class="line"><span class="string">'\xc3\xa4\xc3\xb6\xc3\xbc'</span></div></pre></td></tr></table></figure>
+
+<p>如果有一个其它编码的数据，希望可以从中生成一个 Unicode 字符串，你可以使用 unicode() 函数，它接受编码名作为第二参数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>unicode(<span class="string">'\xc3\xa4\xc3\xb6\xc3\xbc'</span>, <span class="string">'utf-8'</span>)</div><div class="line"><span class="string">u'\xe4\xf6\xfc'</span></div></pre></td></tr></table></figure>
+
+<h2 id="列表(list)">列表(list)</h2>
+<p>就像字符串索引，列表从 0 开始检索。列表可以被切片和连接.所有的切片操作都会返回新的列表，包含求得的元素。这意味着以下的切片操作返回列表 a 的一个浅拷贝的副本.不像 不可变的 字符串，列表允许修改元素.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>a[:]</div><div class="line">[<span class="string">'spam'</span>, <span class="string">'eggs'</span>, <span class="number">100</span>, <span class="number">1234</span>]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>a</div><div class="line">[<span class="string">'spam'</span>, <span class="string">'eggs'</span>, <span class="number">100</span>, <span class="number">1234</span>]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>a[<span class="number">2</span>] = a[<span class="number">2</span>] + <span class="number">23</span></div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>a</div><div class="line">[<span class="string">'spam'</span>, <span class="string">'eggs'</span>, <span class="number">123</span>, <span class="number">1234</span>]</div></pre></td></tr></table></figure>
+
+<p>也可以对切片赋值，此操作可以改变列表的尺寸，或清空它:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;a[:] = []</div><div class="line">&gt;&gt;&gt;a[<span class="number">0</span>:<span class="number">2</span>] = [<span class="number">1</span>, <span class="number">12</span>]</div></pre></td></tr></table></figure>
+
+<p>内置函数 len() 同样适用于列表,允许嵌套列表（创建一个包含其它列表的列表）.你可以在列表末尾添加内容:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>q = [<span class="number">2</span>, <span class="number">3</span>]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>p = [<span class="number">1</span>, q, <span class="number">4</span>]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>len(p)</div><div class="line"><span class="number">3</span></div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>p[<span class="number">1</span>].append(<span class="string">'xtra'</span>)</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>p</div><div class="line">[<span class="number">1</span>, [<span class="number">2</span>, <span class="number">3</span>, <span class="string">'xtra'</span>], <span class="number">4</span>]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>q</div><div class="line">[<span class="number">2</span>, <span class="number">3</span>, <span class="string">'xtra'</span>]</div></pre></td></tr></table></figure>
+
+<p>注意最后一个例子中， p[1] 和 q 实际上指向同一个对象！ </p>
+<h2 id="交互式命令行基础">交互式命令行基础</h2>
+<p>冒号代表是一个块；逗号是禁止换行。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>a, b = <span class="number">0</span>, <span class="number">1</span></div><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="keyword">while</span> b &lt; <span class="number">1000</span>:</div><div class="line"><span class="prompt">... </span>    <span class="keyword">print</span> b,</div><div class="line"><span class="prompt">... </span>    a, b = b, a+b</div><div class="line">...</div><div class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">5</span> <span class="number">8</span> <span class="number">13</span> <span class="number">21</span> <span class="number">34</span> <span class="number">55</span> <span class="number">89</span> <span class="number">144</span> <span class="number">233</span> <span class="number">377</span> <span class="number">610</span> <span class="number">987</span></div></pre></td></tr></table></figure>
+
+<h2 id="深入_Python_流程控制">深入 Python 流程控制</h2>
+<h3 id="if_语句">if 语句</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="keyword">if</span> x &lt; <span class="number">0</span>:</div><div class="line"><span class="prompt">... </span>     x = <span class="number">0</span></div><div class="line"><span class="prompt">... </span>     <span class="keyword">print</span> <span class="string">'Negative changed to zero'</span></div><div class="line"><span class="prompt">... </span><span class="keyword">elif</span> x == <span class="number">0</span>:</div><div class="line"><span class="prompt">... </span>     <span class="keyword">print</span> <span class="string">'Zero'</span></div><div class="line"><span class="prompt">... </span><span class="keyword">elif</span> x == <span class="number">1</span>:</div><div class="line"><span class="prompt">... </span>     <span class="keyword">print</span> <span class="string">'Single'</span></div><div class="line"><span class="prompt">... </span><span class="keyword">else</span>:</div><div class="line"><span class="prompt">... </span>     <span class="keyword">print</span> <span class="string">'More'</span></div></pre></td></tr></table></figure>
+
+<h3 id="for_语句">for 语句</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="comment"># Measure some strings:</span></div><div class="line"><span class="prompt">... </span>a = [<span class="string">'cat'</span>, <span class="string">'window'</span>, <span class="string">'defenestrate'</span>]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="keyword">for</span> x <span class="keyword">in</span> a:</div><div class="line"><span class="prompt">... </span>    <span class="keyword">print</span> x, len(x)</div><div class="line">...</div><div class="line">cat <span class="number">3</span></div><div class="line">window <span class="number">6</span></div><div class="line">defenestrate <span class="number">12</span></div></pre></td></tr></table></figure>
+
+<p>在迭代过程中修改迭代序列不安全（只有在使用链表这样的可变序列时才会有这样的情况）。如果你想要修改你迭代的序列（例如，复制选择项），你可以迭代 它的复本.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="keyword">for</span> x <span class="keyword">in</span> a[:]: <span class="comment"># make a slice copy of the entire list</span></div><div class="line"><span class="prompt">... </span>   <span class="keyword">if</span> len(x) &gt; <span class="number">6</span>: a.insert(<span class="number">0</span>, x)</div><div class="line">...</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>a</div><div class="line">[<span class="string">'defenestrate'</span>, <span class="string">'cat'</span>, <span class="string">'window'</span>, <span class="string">'defenestrate'</span>]</div></pre></td></tr></table></figure>
+
+<h3 id="range()_函数">range() 函数</h3>
+<p>如果你需要一个数值序列，内置函数 range() 会很方便，它生成一个等差级数链表,range(10) 生成了一个包含 10 个值的链表，它用链表的索引值填充了这个长度为 10 的列表，所生成的链表中不包括范围中的结束值。也可以让 range 操作从另一个数值开始，或者可以指定一个不同的步进值（甚至是负数，有时这也被称为 “步长”）:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>range(<span class="number">10</span>)</div><div class="line">[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>range(<span class="number">5</span>, <span class="number">10</span>)</div><div class="line">[<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>range(<span class="number">0</span>, <span class="number">10</span>, <span class="number">3</span>)</div><div class="line">[<span class="number">0</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>range(-<span class="number">10</span>, -<span class="number">100</span>, -<span class="number">30</span>)</div><div class="line">[-<span class="number">10</span>, -<span class="number">40</span>, -<span class="number">70</span>]</div></pre></td></tr></table></figure>
+
+<p>需要迭代链表索引的话，如下所示结合使用 range() 和 len():</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>a = [<span class="string">'Mary'</span>, <span class="string">'had'</span>, <span class="string">'a'</span>, <span class="string">'little'</span>, <span class="string">'lamb'</span>]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> range(len(a)):</div><div class="line"><span class="prompt">... </span>    <span class="keyword">print</span> i, a[i]</div></pre></td></tr></table></figure>
+
+<p>不过，这种场合可以方便地使用 enumerate().</p>
+<h3 id="break_和_continue_语句,_以及循环中的_else_子句">break 和 continue 语句, 以及循环中的 else 子句</h3>
+<p><strong><em>循环可以有一个 else 子句；它在循环迭代完整个列表（对于 for ）后或执行条件为 false （对于 while ）时执行，但循环被 break 中止的情况下不会执行。</em></strong></p>
+<h3 id="pass_语句">pass 语句</h3>
+<p>pass 语句什么也不做。它用于那些语法上必须要有什么语句，但程序什么也不做的场合.<br>这通常用于创建最小结构的类.另一方面， pass 可以在创建新代码时用来做函数或控制体的占位符。可以让你在更抽象的级别上思考。 </p>
+<h3 id="定义函数">定义函数</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">fib</span><span class="params">(n)</span>:</span>    <span class="comment"># write Fibonacci series up to n</span></div><div class="line"><span class="prompt">... </span>    <span class="string">"""Print a Fibonacci series up to n."""</span></div><div class="line"><span class="prompt">... </span>    a, b = <span class="number">0</span>, <span class="number">1</span></div><div class="line"><span class="prompt">... </span>    <span class="keyword">while</span> a &lt; n:</div><div class="line"><span class="prompt">... </span>        <span class="keyword">print</span> a,</div><div class="line"><span class="prompt">... </span>        a, b = b, a+b</div><div class="line">...</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>fib(<span class="number">2000</span>)</div><div class="line"><span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">5</span> <span class="number">8</span> <span class="number">13</span> <span class="number">21</span> <span class="number">34</span> <span class="number">55</span> <span class="number">89</span> <span class="number">144</span> <span class="number">233</span> <span class="number">377</span> <span class="number">610</span> <span class="number">987</span> <span class="number">1597</span></div></pre></td></tr></table></figure>
+
+<p>函数体的第一行语句可以是可选的字符串文本，这个字符串是函数的文档字符串，或者称为 docstring 。<br>函数 调用 会为函数局部变量生成一个新的符号表。 确切地说，所有函数中的变量赋值都是将值存储在局部符号表。 变量引用首先在局部符号表中查找，然后是包含函数的局部符号表，然后是全局符号表，最后是内置名字表。 因此，全局变量不能在函数中直接赋值（除非用 global 语句命名），尽管他们可以被引用。<br>函数引用的实际参数在函数调用时引入局部符号表，因此，实参总是 传值调用 （这里的 值 总是一个对象引用 ，而不是该对象的值）。 [1] 一个函数被另一个函数调用时，一个新的局部符号表在调用过程中被创建。<br>一个函数定义会在当前符号表内引入函数名。 函数名指代的值（即函数体）存在一个被 Python 解释器认定为 用户自定义函数 的类型。 这个值可以赋予其他的名字（即变量名），然后它也可以被当做函数使用。 这可以作为通用的重命名机制:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>fib</div><div class="line">&lt;function fib at <span class="number">10042</span>ed0&gt;</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>f = fib</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>f(<span class="number">100</span>)</div><div class="line"><span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">5</span> <span class="number">8</span> <span class="number">13</span> <span class="number">21</span> <span class="number">34</span> <span class="number">55</span> <span class="number">89</span></div><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="keyword">print</span> fib(<span class="number">0</span>)</div><div class="line"><span class="keyword">None</span></div></pre></td></tr></table></figure>
+
+<p>return 语句从函数中返回一个值，不带表达式的 return 返回 None 。过程结束后也会返回 None 。</p>
+<h4 id="默认参数值">默认参数值</h4>
+<p>最常用的一种形式是为一个或多个参数指定默认值。 这会创建一个可以使用比定义时允许的参数更少的参数调用的函数，例如:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">ask_ok</span><span class="params">(prompt, retries=<span class="number">4</span>, complaint=<span class="string">'Yes or no, please!'</span>)</span>:</span></div><div class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">        ok = raw_input(prompt)</div><div class="line">        <span class="keyword">if</span> ok <span class="keyword">in</span> (<span class="string">'y'</span>, <span class="string">'ye'</span>, <span class="string">'yes'</span>):</div><div class="line">            <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">        <span class="keyword">if</span> ok <span class="keyword">in</span> (<span class="string">'n'</span>, <span class="string">'no'</span>, <span class="string">'nop'</span>, <span class="string">'nope'</span>):</div><div class="line">            <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line">        retries = retries - <span class="number">1</span></div><div class="line">        <span class="keyword">if</span> retries &lt; <span class="number">0</span>:</div><div class="line">            <span class="keyword">raise</span> IOError(<span class="string">'refusenik user'</span>)</div><div class="line">        <span class="keyword">print</span> complaint</div></pre></td></tr></table></figure>
+
+<p>这个例子还介绍了 in 关键字。它测定序列中是否包含某个确定的值。<br>默认值在函数 定义 作用域被解析，如下所示:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">i = <span class="number">5</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(arg=i)</span>:</span></div><div class="line">    <span class="keyword">print</span> arg</div><div class="line">i = <span class="number">6</span></div><div class="line">f() <span class="comment">#print 5</span></div></pre></td></tr></table></figure>
+
+<p><strong><em>重要警告</em></strong>: 默认值只被赋值一次。这使得当默认值是可变对象时会有所不同，比如列表、字典或者大多数类的实例。例如，下面的函数在后续调用过程中会累积（前面）传给它的参数:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(a, L=[])</span>:</span></div><div class="line">    L.append(a)</div><div class="line">    <span class="keyword">return</span> L</div><div class="line"><span class="keyword">print</span> f(<span class="number">1</span>) <span class="comment">#output [1]</span></div><div class="line"><span class="keyword">print</span> f(<span class="number">2</span>) <span class="comment">#output [1,2]</span></div><div class="line"><span class="keyword">print</span> f(<span class="number">3</span>) <span class="comment">#output [1,2,3]</span></div></pre></td></tr></table></figure>
+
+<p>如果你不想在随后的调用中共享默认值，可以像这样写函数:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(a, L=None)</span>:</span></div><div class="line">    <span class="keyword">if</span> L <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">        L = []</div><div class="line">    L.append(a)</div><div class="line">    <span class="keyword">return</span> L</div></pre></td></tr></table></figure>
+
+<h4 id="关键字参数">关键字参数</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">parrot</span><span class="params">(voltage, state=<span class="string">'a stiff'</span>, action=<span class="string">'voom'</span>, type=<span class="string">'Norwegian Blue'</span>)</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">"-- This parrot wouldn't"</span>, action,</div><div class="line">    <span class="keyword">print</span> <span class="string">"if you put"</span>, voltage, <span class="string">"volts through it."</span></div><div class="line">    <span class="keyword">print</span> <span class="string">"-- Lovely plumage, the"</span>, type</div><div class="line">    <span class="keyword">print</span> <span class="string">"-- It's"</span>, state, <span class="string">"!"</span></div></pre></td></tr></table></figure>
+
+<p>接受一个必选参数 ( voltage ) 以及三个可选参数 ( state , action , 和 type )。 可以用以下的任一方法调用:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">parrot(<span class="number">1000</span>)                                          <span class="comment"># 1 positional argument</span></div><div class="line">parrot(voltage=<span class="number">1000</span>)                                  <span class="comment"># 1 keyword argument</span></div><div class="line">parrot(voltage=<span class="number">1000000</span>, action=<span class="string">'VOOOOOM'</span>)             <span class="comment"># 2 keyword arguments</span></div><div class="line">parrot(action=<span class="string">'VOOOOOM'</span>, voltage=<span class="number">1000000</span>)             <span class="comment"># 2 keyword arguments</span></div><div class="line">parrot(<span class="string">'a million'</span>, <span class="string">'bereft of life'</span>, <span class="string">'jump'</span>)         <span class="comment"># 3 positional arguments</span></div><div class="line">parrot(<span class="string">'a thousand'</span>, state=<span class="string">'pushing up the daisies'</span>)  <span class="comment"># 1 positional, 1 keyword</span></div></pre></td></tr></table></figure>
+
+<h4 id="可变参数列表">可变参数列表</h4>
+<p>引入一个形如 <strong>name 的参数时，它接收一个字典（参见 typesmapping ） ，该字典包含了所有未出现在形式参数列表中的关键字参数。这里可能还会组合使用一个形如 <em>name （下一小节详细介绍） 的形式参数，它接收一个元组（下一节中会详细介绍），包含了所有没有出现在形式参数列表中的参数值。（ </em>name 必须在 </strong>name 之前出现） 例如，我们这样定义一个函数:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">cheeseshop</span><span class="params">(kind, *arguments, **keywords)</span>:</span></div><div class="line">    <span class="keyword">print</span> <span class="string">"-- Do you have any"</span>, kind, <span class="string">"?"</span></div><div class="line">    <span class="keyword">print</span> <span class="string">"-- I'm sorry, we're all out of"</span>, kind</div><div class="line">    <span class="keyword">for</span> arg <span class="keyword">in</span> arguments:</div><div class="line">        <span class="keyword">print</span> arg</div><div class="line">    <span class="keyword">print</span> <span class="string">"-"</span> * <span class="number">40</span></div><div class="line">    keys = sorted(keywords.keys())</div><div class="line">    <span class="keyword">for</span> kw <span class="keyword">in</span> keys:</div><div class="line">        <span class="keyword">print</span> kw, <span class="string">":"</span>, keywords[kw]</div></pre></td></tr></table></figure>
+
+<p>它可以像这样调用:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">cheeseshop(<span class="string">"Limburger"</span>, <span class="string">"It's very runny, sir."</span>,</div><div class="line">           <span class="string">"It's really very, VERY runny, sir."</span>,</div><div class="line">           shopkeeper=<span class="string">'Michael Palin'</span>,</div><div class="line">           client=<span class="string">"John Cleese"</span>,</div><div class="line">           sketch=<span class="string">"Cheese Shop Sketch"</span>)</div></pre></td></tr></table></figure>
+
+<p>当然它会按如下内容打印:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">-- Do you have any Limburger ?</div><div class="line">-- I'm sorry, we're all out of Limburger</div><div class="line">It's very runny, sir.</div><div class="line">It's really very, VERY runny, sir.</div><div class="line">----------------------------------------</div><div class="line">client : John Cleese</div><div class="line">shopkeeper : Michael Palin</div><div class="line">sketch : Cheese Shop Sketch</div></pre></td></tr></table></figure>
+
+<p>注意在打印 关键字 参数字典的内容前先调用 sort() 方法。否则的话，打印参数时的顺序是未定义的。</p>
+<h4 id="参数列表的分拆">参数列表的分拆</h4>
+<p>另有一种相反的情况: 当你要传递的参数已经是一个列表，但要调用的函数却接受分开一个个的参数值。这时候你要把已有的列表拆开来。例如内建函数 range() 需要独立的 start , stop 参数。 你可以在调用函数时加一个 * 操作符来自动把参数列表拆开:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span>list(range(<span class="number">3</span>, <span class="number">6</span>))            <span class="comment"># normal call with separate arguments</span></div><div class="line">[<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>args = [<span class="number">3</span>, <span class="number">6</span>]</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>list(range(*args))            <span class="comment"># call with arguments unpacked from a list</span></div><div class="line">[<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</div></pre></td></tr></table></figure>
+
+<p>以同样的方式，可以使用 ** 操作符分拆关键字参数为字典:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">parrot</span><span class="params">(voltage, state=<span class="string">'a stiff'</span>, action=<span class="string">'voom'</span>)</span>:</span></div><div class="line"><span class="prompt">... </span>    <span class="keyword">print</span> <span class="string">"-- This parrot wouldn't"</span>, action,</div><div class="line"><span class="prompt">... </span>    <span class="keyword">print</span> <span class="string">"if you put"</span>, voltage, <span class="string">"volts through it."</span>,</div><div class="line"><span class="prompt">... </span>    <span class="keyword">print</span> <span class="string">"E's"</span>, state, <span class="string">"!"</span></div><div class="line">...</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>d = {<span class="string">"voltage"</span>: <span class="string">"four million"</span>, <span class="string">"state"</span>: <span class="string">"bleedin' demised"</span>, <span class="string">"action"</span>: <span class="string">"VOOM"</span>}</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>parrot(**d)</div><div class="line">-- This parrot wouldn<span class="string">'t VOOM if you put four million volts through it. E'</span>s bleedin<span class="string">' demised !</span></div></pre></td></tr></table></figure>
+
+<h4 id="Lambda_形式">Lambda 形式</h4>
+<p>出于实际需要，有几种通常在函数式编程语言例如 Lisp 中出现的功能加入到了 Python 中。通过 lambda 关键字，可以创建短小的匿名函数。这里有一个函数返回它的两个参数的和： lambda a, b: a+b 。 Lambda 形式可以用于任何需要的函数对象。出于语法限制，它们只能有一个单独的表达式。语义上讲，它们只是普通函数定义中的一个语法技巧。类似于嵌套函数定义，lambda 形式可以从外部作用域引用变量:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">make_incrementor</span><span class="params">(n)</span>:</span></div><div class="line"><span class="prompt">... </span>    <span class="keyword">return</span> <span class="keyword">lambda</span> x: x + n</div><div class="line">...</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>f = make_incrementor(<span class="number">42</span>)</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>f(<span class="number">0</span>)</div><div class="line"><span class="number">42</span></div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>f(<span class="number">1</span>)</div><div class="line"><span class="number">43</span></div></pre></td></tr></table></figure>
+
+<h2 id="文档字符串">文档字符串</h2>
+<p>第一行应该是关于对象用途的简介。简短起见，不用明确的陈述对象名或类型，因为它们可以从别的途径了解到（除非这个名字碰巧就是描述这个函数操作的动词）。这一行应该以大写字母开头，以句号结尾。</p>
+<p>如果文档字符串有多行，第二行应该空出来，与接下来的详细描述明确分隔。接下来的文档应该有一或多段描述对象的调用约定、边界效应等。</p>
+<p>Python 的解释器不会从多行的文档字符串中去除缩进，所以必要的时候应当自己清除缩进。这符合通常的习惯。第一行之后的第一个非空行决定了整个文档的缩进格式。（我们不用第一行是因为它通常紧靠着起始的引号，缩进格式显示的不清楚。）留白“相当于”是字符串的起始缩进。每一行都不应该有缩进，如果有缩进的话，所有的留白都应该清除掉。留白的长度应当等于扩展制表符的宽度（通常是8个空格）。</p>
+<p>以下是一个多行文档字符串的示例:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">my_function</span><span class="params">()</span>:</span></div><div class="line"><span class="prompt">... </span>    <span class="string">"""Do nothing, but document it.</span></div><div class="line">...</div><div class="line"><span class="prompt">... </span>    No, really, it doesn't do anything.</div><div class="line"><span class="prompt">... </span>    """</div><div class="line"><span class="prompt">... </span>    <span class="keyword">pass</span></div><div class="line">...</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="keyword">print</span> my_function.__doc__</div><div class="line">    Do nothing, but document it.</div><div class="line"></div><div class="line">    No, really, it doesn<span class="string">'t do anything.</span></div></pre></td></tr></table></figure>
+
+<h2 id="编码风格">编码风格</h2>
+<ul>
+<li>使用 4 空格缩进，而非 TAB。在小缩进（可以嵌套更深）和大缩进（更易读）之间，4空格是一个很好的折中。TAB 引发了一些混乱，最好弃用。</li>
+<li><p>折行以确保其不会超过 79 个字符。这有助于小显示器用户阅读，也可以让大显示器能并排显示几个代码文件。</p>
+</li>
+<li><p>使用空行分隔函数和类，以及函数中的大块代码。</p>
+</li>
+<li>可能的话，注释独占一行</li>
+<li>使用文档字符串</li>
+<li>把空格放到操作符两边，以及逗号后面，但是括号里侧不加空格： a = f(1, 2) + g(3, 4) 。</li>
+<li>统一函数和类命名。推荐类名用 驼峰命名， 函数和方法名用 小写<em>和</em>下划线。总是用 self 作为方法的第一个参数（关于类和方法的知识详见 初识类 ）。</li>
+<li>不要使用花哨的编码，如果你的代码的目的是要在国际化 环境。 Python 的默认情况下，UTF-8，甚至普通的 ASCII 总是工作的最好。</li>
+<li>同样，也不要使用非 ASCII 字符的标识符，除非是不同语种的会阅读或者维护代码。</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/python/">python</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a class="jiathis_button_twitter">Twitter</a>
+    <a class="jiathis_button_evernote">EverNote</a>
+    <a href="http://www.jiathis.com/share?uid=1501277" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/10/13/Python数据结构和模块/" title="Python数据结构和模块">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  Python数据结构和模块</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/10/13/coffeescript学习/"  title="coffeescript学习">
+ <strong>NEXT:</strong><br/> 
+ <span>coffeescript学习
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Python的简介"><span class="toc-number">1.</span> <span class="toc-text">Python的简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#将_Python_当做计算器"><span class="toc-number">2.</span> <span class="toc-text">将 Python 当做计算器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串"><span class="toc-number">3.</span> <span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于_Unicode"><span class="toc-number">4.</span> <span class="toc-text">关于 Unicode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#列表(list)"><span class="toc-number">5.</span> <span class="toc-text">列表(list)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#交互式命令行基础"><span class="toc-number">6.</span> <span class="toc-text">交互式命令行基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#深入_Python_流程控制"><span class="toc-number">7.</span> <span class="toc-text">深入 Python 流程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#if_语句"><span class="toc-number">7.1.</span> <span class="toc-text">if 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for_语句"><span class="toc-number">7.2.</span> <span class="toc-text">for 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#range()_函数"><span class="toc-number">7.3.</span> <span class="toc-text">range() 函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#break_和_continue_语句,_以及循环中的_else_子句"><span class="toc-number">7.4.</span> <span class="toc-text">break 和 continue 语句, 以及循环中的 else 子句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pass_语句"><span class="toc-number">7.5.</span> <span class="toc-text">pass 语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义函数"><span class="toc-number">7.6.</span> <span class="toc-text">定义函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#默认参数值"><span class="toc-number">7.6.1.</span> <span class="toc-text">默认参数值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关键字参数"><span class="toc-number">7.6.2.</span> <span class="toc-text">关键字参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可变参数列表"><span class="toc-number">7.6.3.</span> <span class="toc-text">可变参数列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参数列表的分拆"><span class="toc-number">7.6.4.</span> <span class="toc-text">参数列表的分拆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Lambda_形式"><span class="toc-number">7.6.5.</span> <span class="toc-text">Lambda 形式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文档字符串"><span class="toc-number">8.</span> <span class="toc-text">文档字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编码风格"><span class="toc-number">9.</span> <span class="toc-text">编码风格</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">Archives</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">12</span></li></ul>
+  </div>
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/NodeJs/" title="NodeJs">NodeJs<sup>5</sup></a></li>
+		
+			<li><a href="/categories/git-submodule/" title="git submodule">git submodule<sup>1</sup></a></li>
+		
+			<li><a href="/categories/ubuntu快捷键/" title="ubuntu快捷键">ubuntu快捷键<sup>1</sup></a></li>
+		
+			<li><a href="/categories/useful-website/" title="useful_website">useful_website<sup>1</sup></a></li>
+		
+			<li><a href="/categories/zhong/" title="zhong">zhong<sup>0</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>5</sup></a></li>
+		
+			<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+		
+			<li><a href="/tags/js/" title="js">js<sup>1</sup></a></li>
+		
+			<li><a href="/tags/python/" title="python">python<sup>2</sup></a></li>
+		
+			<li><a href="/tags/ss/" title="ss">ss<sup>0</sup></a></li>
+		
+			<li><a href="/tags/ubuntu/" title="ubuntu">ubuntu<sup>1</sup></a></li>
+		
+			<li><a href="/tags/useful/" title="useful">useful<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">Tag Cloud</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/NodeJs/" style="font-size: 20.00px;">NodeJs</a><a href="/tags/git/" style="font-size: 13.33px;">git</a><a href="/tags/js/" style="font-size: 13.33px;">js</a><a href="/tags/python/" style="font-size: 16.67px;">python</a><a href="/tags/ss/" style="font-size: 10.00px;">ss</a><a href="/tags/ubuntu/" style="font-size: 13.33px;">ubuntu</a><a href="/tags/useful/" style="font-size: 13.33px;">useful</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://yuexiahandao.github.com" target="_blank" title="Gavin Zhang">Gavin's Blog</a></li>
+      <li><a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Welcome to Gavin Zhang&#39;s personal blog! <br/>
+			Welcome visiting</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/u/2113616192" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/yuexiahandao" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/yuexiahandao" target="_blank" title="github"></a>
+		
+		
+		<a href="https://www.facebook.com/gavinzhang" target="_blank" title="facebook"></a>
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2014 
+		
+		<a href="http://yuexiahandao.github.com" target="_blank" title="Gavin Zhang">Gavin Zhang</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'null', 'null');  
+ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>

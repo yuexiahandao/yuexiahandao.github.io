@@ -4,21 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>NodeJs环境安装 | Gavin&#39;s Blog</title>
+    <title>Python数据结构和模块 | Gavin&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Gavin Zhang">
     
-    <meta name="description" content="一、安装包安装
-NodeJs在很多的系统下有独立的安装包，而且安装之后会随之连同安装npm！
-二、编译源代码
-Node.js从0.6版本开始已经实现了源代码级别的跨平台,因此我们可以使用不同的编译命令将同一份源代码的基础上编译为不同平台下的原生可执行代码。在编译之前,要先获取源码包。我们建议访问ht">
+    <meta name="description" content="数据结构
+关于列表更多的内容
+
+list.append(x) =&amp;gt; 把一个元素添加到链表的结尾，相当于 a[len(a):] = [x] 。
+list.extend(L) =&amp;gt; 将一个给定列表中的所有元素都添加到另一个列表中，相当于 a[len(a):] = L 。
+list.inser">
     
     
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="yuexiahandao" />
-    <meta name="twitter:title" content="NodeJs环境安装 | Gavin&#39;s Blog" />
+    <meta name="twitter:title" content="Python数据结构和模块 | Gavin&#39;s Blog" />
       
     
     
@@ -80,15 +82,15 @@ Node.js从0.6版本开始已经实现了源代码级别的跨平台,因此我们
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/10/10/NodeJs环境安装/" title="NodeJs环境安装" itemprop="url">NodeJs环境安装</a>
+      <a href="/2014/10/13/Python数据结构和模块/" title="Python数据结构和模块" itemprop="url">Python数据结构和模块</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yuexiahandao.github.com" title="Gavin Zhang">Gavin Zhang</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-10-10T13:05:51.000Z" itemprop="datePublished">Oct 10 2014</time>
-    Updated:<time datetime="2014-10-10T13:06:19.000Z" itemprop="dateModified">Oct 10 2014</time>
+    <time datetime="2014-10-13T08:28:47.000Z" itemprop="datePublished">Oct 13 2014</time>
+    Updated:<time datetime="2014-10-13T13:38:18.000Z" itemprop="dateModified">Oct 13 2014</time>
     
   </p>
 </header>
@@ -97,36 +99,35 @@ Node.js从0.6版本开始已经实现了源代码级别的跨平台,因此我们
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、安装包安装"><span class="toc-number">1.</span> <span class="toc-text">一、安装包安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、编译源代码"><span class="toc-number">2.</span> <span class="toc-text">二、编译源代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、安装_Node_包管理器"><span class="toc-number">3.</span> <span class="toc-text">三、安装 Node 包管理器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、安装多版本管理器"><span class="toc-number">4.</span> <span class="toc-text">四、安装多版本管理器</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据结构"><span class="toc-number">1.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于列表更多的内容"><span class="toc-number">1.1.</span> <span class="toc-text">关于列表更多的内容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#把链表当作队列使用"><span class="toc-number">1.1.1.</span> <span class="toc-text">把链表当作队列使用</span></a></li></ol></li></ol></li></ol>
 		</div>
 		
-		<h1 id="一、安装包安装">一、安装包安装</h1>
-<p>NodeJs在很多的系统下有独立的安装包，而且安装之后会随之连同安装npm！</p>
-<h1 id="二、编译源代码">二、编译源代码</h1>
-<p>Node.js从0.6版本开始已经实现了源代码级别的跨平台,因此我们可以使用不同的编译命令将同一份源代码的基础上编译为不同平台下的原生可执行代码。在编译之前,要先获取源码包。我们建议访问<a href="http://nodejs.org" target="_blank" rel="external">http://nodejs.org</a>,点击Download链接,然后选择Source Code,下载正式发布的源码包。如果你需要开发中的版本,可以通过<a href="https://github.com/joyent/node/zipball/master" target="_blank" rel="external">https://github.com/joyent/node/zipball/master</a> 获得,或者在命令行下输入 </p>
-<pre><code>$ git clone gi<span class="variable">t:</span>//github.<span class="keyword">com</span>/joyent/node.git
-</code></pre><p>从git获得最新的分支。</p>
-<h1 id="三、安装_Node_包管理器">三、安装 Node 包管理器</h1>
-<p>Node 包管理器(npm)是一个由 Node.js 官方提供的第三方包管理工具,就像 PHP 的Pear、Python 的 PyPI 一样。npm 是一个完全由 JavaScript 实现的命令行工具,通过 Node.js 执行,因此严格来讲它不属于 Node.js 的一部分。在最初的版本中,我们需要在安装完 Node.js以后手动安装npm。但从 Node.js 0.6 开始,npm 已包含在发行包中了,我们在 Windows、Mac 上安装包和源代码包时会自动同时安装 npm。</p>
-<h1 id="四、安装多版本管理器">四、安装多版本管理器</h1>
-<p>迄今为止Node.js 更新速度还很快,有时候新版本还会将旧版本的一些 API 废除,以至于写好的代码不能向下兼容。有时候你可能想要尝试一下新版本有趣的特性,但又想要保持一个相对稳定的环境。基于这种需求,Node.js 的社区开发了多版本管理器,用于在一台机器上维护多个版本的 Node.js 实例,方便按需切换。Node 多版本管理器(Node VersionManager,nvm)是一个通用的叫法,它目前有许多不同的实现。通常我们说的 nvm 是指<a href="https://github.com/creationix/nvm" target="_blank" rel="external">https://github.com/creationix/nvm</a> 或者 <a href="https://github.com/visionmedia/n" target="_blank" rel="external">https://github.com/visionmedia/n</a> 。笔者根据个人偏好推荐使用 visionmedia/n,此小节就以它为例子介绍 Node 多版本管理器的用法。</p>
-<p>n 是一个十分简洁的 Node 多版本管理器,就连它的名字也不例外。它的名字就是 n ,没错,就一个字母。</p>
-<p>如果你已经安装好了 Node.js 和 npm 环境,就可以直接使用 npm install -g n 命令来安装 n 。当然你可能会问:如果我想完全通过 n 来管理 Node.js,那么没安装之前哪来的 npm呢?事实上, n 并不需要 Node.js 驱动,它只是 bash 脚本,使用 npm 安装只是采取一种简便的方式而已。我们可以在 <a href="https://github.com/visionmedia/n" target="_blank" rel="external">https://github.com/visionmedia/n</a> 下载它的代码,然后使用 makeinstall 命令安装。</p>
-<p>关于 n 的更多细节,请访问它的项目主页 <a href="https://github.com/visionmedia/n" target="_blank" rel="external">https://github.com/visionmedia/n</a> 获取信息。</p>
+		<h2 id="数据结构">数据结构</h2>
+<h3 id="关于列表更多的内容">关于列表更多的内容</h3>
+<ul>
+<li>list.append(x) =&gt; 把一个元素添加到链表的结尾，相当于 a[len(a):] = [x] 。</li>
+<li>list.extend(L) =&gt; 将一个给定列表中的所有元素都添加到另一个列表中，相当于 a[len(a):] = L 。</li>
+<li>list.insert(i, x) =&gt; 在指定位置插入一个元素。第一个参数是准备插入到其前面的那个元素的索引，例如 a.insert(0, x) 会插入到整个链表之前，而 a.insert(len(a), x) 相当于 a.append(x) 。</li>
+<li>list.remove(x) =&gt; 删除链表中值为 x 的第一个元素。如果没有这样的元素，就会返回一个错误。</li>
+<li>list.pop([i]) =&gt; 从链表的指定位置删除元素，并将其返回。如果没有指定索引， a.pop() 返回最后一个元素。元素随即从链表中被删除。（方法中 i 两边的方括号表示这个参数是可选的，而不是要求你输入一对方括号，你会经常在 Python 库参考手册中遇到这样的标记。）</li>
+<li>list.index(x) =&gt; 返回链表中第一个值为 x 的元素的索引。如果没有匹配的元素就会返回一个错误。</li>
+<li>list.count(x) =&gt; 返回 x 在链表中出现的次数。</li>
+<li>list.sort() =&gt; 对链表中的元素就地进行排序。</li>
+<li>list.reverse() =&gt; 就地倒排链表中的元素。</li>
+</ul>
+<h4 id="把链表当作队列使用">把链表当作队列使用</h4>
+<p>实现队列，使用 collections.deque ，它为在首尾两端快速插入和删除而设计。例如:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="keyword">from</span> collections <span class="keyword">import</span> deque</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>queue = deque([<span class="string">"Eric"</span>, <span class="string">"John"</span>, <span class="string">"Michael"</span>])</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>queue.append(<span class="string">"Terry"</span>)           <span class="comment"># Terry arrives</span></div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>queue.append(<span class="string">"Graham"</span>)          <span class="comment"># Graham arrives</span></div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>queue.popleft()                 <span class="comment"># The first to arrive now leaves</span></div><div class="line"><span class="string">'Eric'</span></div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>queue.popleft()                 <span class="comment"># The second to arrive now leaves</span></div><div class="line"><span class="string">'John'</span></div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>queue                           <span class="comment"># Remaining queue in order of arrival</span></div><div class="line">deque([<span class="string">'Michael'</span>, <span class="string">'Terry'</span>, <span class="string">'Graham'</span>])</div></pre></td></tr></table></figure>
+
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/NodeJs/">NodeJs</a>
+  <span></span> <a href="/tags/python/">python</a>
   </div>
 
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/NodeJs/">NodeJs</a>
-</div>
 
 
 
@@ -159,19 +160,11 @@ Node.js从0.6版本开始已经实现了源代码级别的跨平台,因此我们
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/10/10/Ubuntu快捷键/" title="Ubuntu快捷键 ">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Ubuntu快捷键 </span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/10/10/NodeJs简介/"  title="NodeJs简介">
+<a href="/2014/10/13/Python基础/"  title="Python基础">
  <strong>NEXT:</strong><br/> 
- <span>NodeJs简介
+ <span>Python基础
 </span>
 </a>
 </div>
@@ -188,7 +181,7 @@ Node.js从0.6版本开始已经实现了源代码级别的跨平台,因此我们
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、安装包安装"><span class="toc-number">1.</span> <span class="toc-text">一、安装包安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、编译源代码"><span class="toc-number">2.</span> <span class="toc-text">二、编译源代码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、安装_Node_包管理器"><span class="toc-number">3.</span> <span class="toc-text">三、安装 Node 包管理器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、安装多版本管理器"><span class="toc-number">4.</span> <span class="toc-text">四、安装多版本管理器</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据结构"><span class="toc-number">1.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于列表更多的内容"><span class="toc-number">1.1.</span> <span class="toc-text">关于列表更多的内容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#把链表当作队列使用"><span class="toc-number">1.1.1.</span> <span class="toc-text">把链表当作队列使用</span></a></li></ol></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
