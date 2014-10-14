@@ -4,23 +4,19 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Python数据结构和模块 | Gavin&#39;s Blog</title>
+    <title>mysql错误总结 | Gavin&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Gavin Zhang">
     
-    <meta name="description" content="数据结构
-关于列表更多的内容
-
-list.append(x) =&amp;gt; 把一个元素添加到链表的结尾，相当于 a[len(a):] = [x] 。
-list.extend(L) =&amp;gt; 将一个给定列表中的所有元素都添加到另一个列表中，相当于 a[len(a):] = L 。
-list.inser">
+    <meta name="description" content="找不到mysqld.sock - 1
+今天打开workbench连接mysql，哎，居然连不上，仔细一看服务没启动于是去启动，发现启动不了！提示找不到sock这接字文件，但是这个文件是启动服务时自动生存的呀！于是在根目录下搜索sock，发现居然没有此mysqld.sock文件。顿时没有办法，于是乎去">
     
     
     
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="yuexiahandao" />
-    <meta name="twitter:title" content="Python数据结构和模块 | Gavin&#39;s Blog" />
+    <meta name="twitter:title" content="mysql错误总结 | Gavin&#39;s Blog" />
       
     
     
@@ -82,15 +78,15 @@ list.inser">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/10/13/Python数据结构和模块/" title="Python数据结构和模块" itemprop="url">Python数据结构和模块</a>
+      <a href="/2014/10/14/mysql错误总结/" title="mysql错误总结" itemprop="url">mysql错误总结</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yuexiahandao.github.com" title="Gavin Zhang">Gavin Zhang</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-10-13T08:28:47.000Z" itemprop="datePublished">Oct 13 2014</time>
-    Updated:<time datetime="2014-10-13T13:38:18.000Z" itemprop="dateModified">Oct 13 2014</time>
+    <time datetime="2014-10-14T09:06:19.000Z" itemprop="datePublished">Oct 14 2014</time>
+    Updated:<time datetime="2014-10-14T13:07:24.000Z" itemprop="dateModified">Oct 14 2014</time>
     
   </p>
 </header>
@@ -99,33 +95,18 @@ list.inser">
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据结构"><span class="toc-number">1.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于列表更多的内容"><span class="toc-number">1.1.</span> <span class="toc-text">关于列表更多的内容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#把链表当作队列使用"><span class="toc-number">1.1.1.</span> <span class="toc-text">把链表当作队列使用</span></a></li></ol></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#找不到mysqld-sock_-_1"><span class="toc-number">1.</span> <span class="toc-text">找不到mysqld.sock - 1</span></a></li></ol>
 		</div>
 		
-		<h2 id="数据结构">数据结构</h2>
-<h3 id="关于列表更多的内容">关于列表更多的内容</h3>
-<ul>
-<li>list.append(x) =&gt; 把一个元素添加到链表的结尾，相当于 a[len(a):] = [x] 。</li>
-<li>list.extend(L) =&gt; 将一个给定列表中的所有元素都添加到另一个列表中，相当于 a[len(a):] = L 。</li>
-<li>list.insert(i, x) =&gt; 在指定位置插入一个元素。第一个参数是准备插入到其前面的那个元素的索引，例如 a.insert(0, x) 会插入到整个链表之前，而 a.insert(len(a), x) 相当于 a.append(x) 。</li>
-<li>list.remove(x) =&gt; 删除链表中值为 x 的第一个元素。如果没有这样的元素，就会返回一个错误。</li>
-<li>list.pop([i]) =&gt; 从链表的指定位置删除元素，并将其返回。如果没有指定索引， a.pop() 返回最后一个元素。元素随即从链表中被删除。（方法中 i 两边的方括号表示这个参数是可选的，而不是要求你输入一对方括号，你会经常在 Python 库参考手册中遇到这样的标记。）</li>
-<li>list.index(x) =&gt; 返回链表中第一个值为 x 的元素的索引。如果没有匹配的元素就会返回一个错误。</li>
-<li>list.count(x) =&gt; 返回 x 在链表中出现的次数。</li>
-<li>list.sort() =&gt; 对链表中的元素就地进行排序。</li>
-<li>list.reverse() =&gt; 就地倒排链表中的元素。</li>
-</ul>
-<h4 id="把链表当作队列使用">把链表当作队列使用</h4>
-<p>实现队列，使用 collections.deque ，它为在首尾两端快速插入和删除而设计。例如:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="keyword">from</span> collections <span class="keyword">import</span> deque</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>queue = deque([<span class="string">"Eric"</span>, <span class="string">"John"</span>, <span class="string">"Michael"</span>])</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>queue.append(<span class="string">"Terry"</span>)           <span class="comment"># Terry arrives</span></div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>queue.append(<span class="string">"Graham"</span>)          <span class="comment"># Graham arrives</span></div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>queue.popleft()                 <span class="comment"># The first to arrive now leaves</span></div><div class="line"><span class="string">'Eric'</span></div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>queue.popleft()                 <span class="comment"># The second to arrive now leaves</span></div><div class="line"><span class="string">'John'</span></div><div class="line"><span class="prompt">&gt;&gt;&gt; </span>queue                           <span class="comment"># Remaining queue in order of arrival</span></div><div class="line">deque([<span class="string">'Michael'</span>, <span class="string">'Terry'</span>, <span class="string">'Graham'</span>])</div></pre></td></tr></table></figure>
-
+		<h2 id="找不到mysqld-sock_-_1">找不到mysqld.sock - 1</h2>
+<p>今天打开workbench连接mysql，哎，居然连不上，仔细一看服务没启动于是去启动，发现启动不了！提示找不到sock这接字文件，但是这个文件是启动服务时自动生存的呀！于是在根目录下搜索sock，发现居然没有此mysqld.sock文件。顿时没有办法，于是乎去看日志文件，提示是没有建立TCP/IP的连接，问我是否有程序占用3306端口。所以我输入lsof -i TCP：3306，结果显示没有任何程序占用3306端口。接着使用ps和netstat命令查看，依然一无所获。哎，泪奔了。。。花了2个小时找问题。其实在我看到日志中提到TCP/IP连接时，我就想到了之前manager让我将my.cnf中的server ip设置为本机ip，之后我重启过电脑。程序员的敏感告诉我应该改会127.0.0.1，问题应该可以解决，但是我认为那不是问题，因为我找不到这样会出错的原因。所以没有试，末了没办法了，改吧！结果奇迹就这么出现了。运行sudo /etc/init.d/mysql start居然提示ok。瞬间晕死。哎！相信自己的直觉，看似不可能但是事实就是如此！这个玩笑开得有点大！</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/python/">python</a>
+  <span></span> <a href="/tags/mysql/">mysql</a>
   </div>
 
 
@@ -160,11 +141,19 @@ list.inser">
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2014/10/14/Python异常/" title="Python异常">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  Python异常</span>
+</a>
+</div>
+
 
 <div class="next">
-<a href="/2014/10/13/Python基础/"  title="Python基础">
+<a href="/2014/10/14/Git常用命令/"  title="Git常用命令">
  <strong>NEXT:</strong><br/> 
- <span>Python基础
+ <span>Git常用命令
 </span>
 </a>
 </div>
@@ -181,7 +170,7 @@ list.inser">
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据结构"><span class="toc-number">1.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于列表更多的内容"><span class="toc-number">1.1.</span> <span class="toc-text">关于列表更多的内容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#把链表当作队列使用"><span class="toc-number">1.1.1.</span> <span class="toc-text">把链表当作队列使用</span></a></li></ol></li></ol></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#找不到mysqld-sock_-_1"><span class="toc-number">1.</span> <span class="toc-text">找不到mysqld.sock - 1</span></a></li></ol>
   </div>
 
 <div id="asidepart">
@@ -191,7 +180,7 @@ list.inser">
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">Archives</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">12</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">15</span></li></ul>
   </div>
 
 
@@ -221,11 +210,13 @@ list.inser">
 		
 			<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>5</sup></a></li>
 		
-			<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			<li><a href="/tags/git/" title="git">git<sup>2</sup></a></li>
 		
 			<li><a href="/tags/js/" title="js">js<sup>1</sup></a></li>
 		
-			<li><a href="/tags/python/" title="python">python<sup>2</sup></a></li>
+			<li><a href="/tags/mysql/" title="mysql">mysql<sup>1</sup></a></li>
+		
+			<li><a href="/tags/python/" title="python">python<sup>3</sup></a></li>
 		
 			<li><a href="/tags/ss/" title="ss">ss<sup>0</sup></a></li>
 		
@@ -241,7 +232,7 @@ list.inser">
   <div class="tagcloudlist">
     <p class="asidetitle">Tag Cloud</p>
     <div class="tagcloudlist clearfix">
-       <a href="/tags/NodeJs/" style="font-size: 20.00px;">NodeJs</a><a href="/tags/git/" style="font-size: 13.33px;">git</a><a href="/tags/js/" style="font-size: 13.33px;">js</a><a href="/tags/python/" style="font-size: 16.67px;">python</a><a href="/tags/ss/" style="font-size: 10.00px;">ss</a><a href="/tags/ubuntu/" style="font-size: 13.33px;">ubuntu</a><a href="/tags/useful/" style="font-size: 13.33px;">useful</a>
+       <a href="/tags/NodeJs/" style="font-size: 20.00px;">NodeJs</a><a href="/tags/git/" style="font-size: 15.00px;">git</a><a href="/tags/js/" style="font-size: 12.50px;">js</a><a href="/tags/mysql/" style="font-size: 12.50px;">mysql</a><a href="/tags/python/" style="font-size: 17.50px;">python</a><a href="/tags/ss/" style="font-size: 10.00px;">ss</a><a href="/tags/ubuntu/" style="font-size: 12.50px;">ubuntu</a><a href="/tags/useful/" style="font-size: 12.50px;">useful</a>
     </div>
   </div>
 
@@ -249,7 +240,8 @@ list.inser">
   <div class="linkslist">
   <p class="asidetitle">Links</p>
     <ul>
-      <li><a href="http://yuexiahandao.github.com" target="_blank" title="Gavin Zhang">Gavin's Blog</a></li>
+      <li><a href="http://robbinfan.com/" target="_blank" title="Robbin's Blog">Robbin's Blog</a></li>
+      <li><a href="http://www.zhengmenbb.com/" target="_blank" title="Zack's Blog">Zack's Blog</a></title>
       <li><a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a></li>
     </ul>
 </div>

@@ -1,0 +1,421 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Python异常 | Gavin&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Gavin Zhang">
+    
+    <meta name="description" content="异常处理
+通过编程处理选择的异常是可行的。 看一下下面的例子：它会一直要求用户输入，直到输入一个合法的整数为止，但允许用户中断这个程序（使用 Control-C 或系统支持的任何方法）。 注意：用户产生的中断会引发一个 KeyboardInterrupt 异常。
+1234567&amp;gt;&amp;gt;&amp;gt">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="yuexiahandao" />
+    <meta name="twitter:title" content="Python异常 | Gavin&#39;s Blog" />
+      
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png##img/logo.svg" alt="Gavin&#39;s Blog" title="Gavin&#39;s Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Gavin&#39;s Blog">Gavin&#39;s Blog</a></h1>
+				<h2 class="blog-motto">Welcome to Gavin Zhang&#39;s personal blog!</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/tags">Tags</a></li>
+					
+						<li><a href="/categories">Categories</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" autocomplete="off" name="q" maxlength="20" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/10/14/Python异常/" title="Python异常" itemprop="url">Python异常</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yuexiahandao.github.com" title="Gavin Zhang">Gavin Zhang</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2014-10-14T14:25:36.000Z" itemprop="datePublished">Oct 14 2014</time>
+    Updated:<time datetime="2014-10-14T14:45:45.000Z" itemprop="dateModified">Oct 14 2014</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#异常处理"><span class="toc-number">1.</span> <span class="toc-text">异常处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#抛出异常"><span class="toc-number">2.</span> <span class="toc-text">抛出异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户自定义异常"><span class="toc-number">3.</span> <span class="toc-text">用户自定义异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义清理行为"><span class="toc-number">4.</span> <span class="toc-text">定义清理行为</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#预定义清理行为"><span class="toc-number">5.</span> <span class="toc-text">预定义清理行为</span></a></li></ol>
+		</div>
+		
+		<h2 id="异常处理">异常处理</h2>
+<p>通过编程处理选择的异常是可行的。 看一下下面的例子：它会一直要求用户输入，直到输入一个合法的整数为止，但允许用户中断这个程序（使用 Control-C 或系统支持的任何方法）。 注意：用户产生的中断会引发一个 KeyboardInterrupt 异常。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line"><span class="prompt">... </span>    <span class="keyword">try</span>:</div><div class="line"><span class="prompt">... </span>        x = int(raw_input(<span class="string">"Please enter a number: "</span>))</div><div class="line"><span class="prompt">... </span>        <span class="keyword">break</span></div><div class="line"><span class="prompt">... </span>    <span class="keyword">except</span> ValueError:</div><div class="line"><span class="prompt">... </span>        <span class="keyword">print</span> <span class="string">"Oops!  That was no valid number.  Try again..."</span></div><div class="line">...</div></pre></td></tr></table></figure>
+
+<p>如果发生了一个异常，在 except 子句中没有与之匹配的分支，它就会传递到上一级 try 语句中。如果最终仍找不到对应的处理语句，它就成为一个 未处理异常 ，终止程序运行，显示提示信息。<br>一个 try 语句可能包含多个 except 子句，分别指定处理不同的异常。至多只会有一个分支被执行。异常处理程序只会处理对应的 try 子句中发生的异常，在同一个 try 语句中，其他子句中发生的异常则不作处理。一个 except 子句可以在括号中列出多个异常的名字，例如:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">... </span><span class="keyword">except</span> (RuntimeError, TypeError, NameError):</div><div class="line"><span class="prompt">... </span>    <span class="keyword">pass</span></div></pre></td></tr></table></figure>
+
+<p>最后一个 except 子句可以省略异常名称，以作为通配符使用。 你需要慎用此法，因为它会轻易隐藏一个实际的程序错误！ 可以使用这种方法打印一条错误信息，然后重新抛出异常（允许调用者处理这个异常):</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">try</span>:</div><div class="line">    f = open(<span class="string">'myfile.txt'</span>)</div><div class="line">    s = f.readline()</div><div class="line">    i = int(s.strip())</div><div class="line"><span class="keyword">except</span> IOError <span class="keyword">as</span> e:</div><div class="line">    <span class="keyword">print</span> <span class="string">"I/O error({0}): {1}"</span>.format(e.errno, e.strerror)</div><div class="line"><span class="keyword">except</span> ValueError:</div><div class="line">    <span class="keyword">print</span> <span class="string">"Could not convert data to an integer."</span></div><div class="line"><span class="keyword">except</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"Unexpected error:"</span>, sys.exc_info()[<span class="number">0</span>]</div><div class="line">    <span class="keyword">raise</span></div></pre></td></tr></table></figure>
+
+<p>try … except 语句可以带有一个 else子句 ，该子句只能出现在所有 except 子句之后。当 try 语句没有抛出异常时，需要执行一些代码，可以使用这个子句。使用 else 子句比在 try 子句中附加代码要好，因为这样可以避免 try … except 意外的截获本来不属于它们保护的那些代码抛出的异常。<br>发生异常时，可能会有一个附属值，作为异常的 参数 存在。这个参数是否存在、是什么类型，依赖于异常的类型。<br>在异常名（列表）之后，也可以为 except 子句指定一个变量。这个变量绑定于一个异常实例，它存储在 instance.args 的参数中。为了方便起见，异常实例定义了 <strong>str</strong>() ，这样就可以直接访问过打印参数而不必引用 .args 。 这种做法不受鼓励。相反，更好的做法是给异常传递一个参数（如果要传递多个参数，可以传递一个元组），把它绑定到 message 属性。一旦异常发生，它会在抛出前绑定所有指定的属性。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; try:</div><div class="line">...    raise Exception('spam', 'eggs')</div><div class="line">... except Exception as inst:</div><div class="line">...    print type(inst)    # the exception instance</div><div class="line">...    print inst.args     # arguments stored in .args</div><div class="line">...    print inst          # __str__ allows args to be printed directly,</div><div class="line">...                         # but may be overridden in exception subclasses</div><div class="line">...    x, y = inst.args     # unpack args</div><div class="line">...    print 'x =', x</div><div class="line">...    print 'y =', y</div><div class="line">...</div><div class="line">&lt;class 'Exception'&gt;</div><div class="line">('spam', 'eggs')</div><div class="line">('spam', 'eggs')</div><div class="line">x = spam</div><div class="line">y = eggs</div></pre></td></tr></table></figure>
+
+<h2 id="抛出异常">抛出异常</h2>
+<p>raise 语句允许程序员强制抛出一个指定的异常。要抛出的异常由 raise 的唯一参数标识。它必需是一个异常实例或异常类（继承自 Exception 的类）。</p>
+<h2 id="用户自定义异常">用户自定义异常</h2>
+<p>在程序中可以通过创建新的异常类型来命名自己的异常（Python 类的内容请参见 类 ）。异常类通常应该直接或间接的从 Exception 类派生，例如:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="class"><span class="keyword">class</span> <span class="title">MyError</span><span class="params">(Exception)</span>:</span></div><div class="line"><span class="prompt">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, value)</span>:</span></div><div class="line"><span class="prompt">... </span>        self.value = value</div><div class="line"><span class="prompt">... </span>    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></div><div class="line"><span class="prompt">... </span>        <span class="keyword">return</span> repr(self.value)</div><div class="line">...</div><div class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="keyword">try</span>:</div><div class="line"><span class="prompt">... </span>    <span class="keyword">raise</span> MyError(<span class="number">2</span>*<span class="number">2</span>)</div><div class="line"><span class="prompt">... </span><span class="keyword">except</span> MyError <span class="keyword">as</span> e:</div><div class="line"><span class="prompt">... </span>    <span class="keyword">print</span> <span class="string">'My exception occurred, value:'</span>, e.value</div><div class="line">...</div></pre></td></tr></table></figure>
+
+<p>在这个例子中，Exception 默认的 <strong>init</strong>() 被覆盖。新的方式简单的创建 value 属性。这就替换了原来创建 args 属性的方式。</p>
+<p>异常类中可以定义任何其它类中可以定义的东西，但是通常为了保持简单，只在其中加入几个属性信息，以供异常处理句柄提取。如果一个新创建的模块中需要抛出几种不同的错误时，一个通常的作法是为该模块定义一个异常基类，然后针对不同的错误类型派生出对应的异常子类.<br>与标准异常相似，大多数异常的命名都以 “Error” 结尾。</p>
+<h2 id="定义清理行为">定义清理行为</h2>
+<p>try 语句经由 break ，continue 或 return 语句退 出也一样会执行 finally 子句。</p>
+<h2 id="预定义清理行为">预定义清理行为</h2>
+<p>有些对象定义了标准的清理行为，无论对象操作是否成功，不再需要该对象的时 候就会起作用。以下示例尝试打开文件并把内容打印到屏幕上:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> line <span class="keyword">in</span> open(<span class="string">"myfile.txt"</span>):</div><div class="line">    <span class="keyword">print</span> line</div></pre></td></tr></table></figure>
+
+<p>这段代码的问题在于在代码执行完后没有立即关闭打开的文件。这在简单的脚本 里没什么，但是大型应用程序就会出问题。 with 语句使得文件之类的对象可以 确保总能及时准确地进行清理:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> open(<span class="string">"myfile.txt"</span>) <span class="keyword">as</span> f:</div><div class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> f:</div><div class="line">        <span class="keyword">print</span> line</div></pre></td></tr></table></figure>
+
+<p>语句执行后，文件 f 总会被关闭，即使是在处理文件中的数据时出错也一样。 其它对象是否提供了预定义的清理行为要查看它们的文档。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/python/">python</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_tsina">新浪微博</a>
+    <a class="jiathis_button_weixin">微信</a>
+    <a class="jiathis_button_twitter">Twitter</a>
+    <a class="jiathis_button_evernote">EverNote</a>
+    <a href="http://www.jiathis.com/share?uid=1501277" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+" charset="utf-8"></script>      
+
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2014/10/14/mysql错误总结/"  title="mysql错误总结">
+ <strong>NEXT:</strong><br/> 
+ <span>mysql错误总结
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#异常处理"><span class="toc-number">1.</span> <span class="toc-text">异常处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#抛出异常"><span class="toc-number">2.</span> <span class="toc-text">抛出异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用户自定义异常"><span class="toc-number">3.</span> <span class="toc-text">用户自定义异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义清理行为"><span class="toc-number">4.</span> <span class="toc-text">定义清理行为</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#预定义清理行为"><span class="toc-number">5.</span> <span class="toc-text">预定义清理行为</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">Archives</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">15</span></li></ul>
+  </div>
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/NodeJs/" title="NodeJs">NodeJs<sup>5</sup></a></li>
+		
+			<li><a href="/categories/git-submodule/" title="git submodule">git submodule<sup>1</sup></a></li>
+		
+			<li><a href="/categories/ubuntu快捷键/" title="ubuntu快捷键">ubuntu快捷键<sup>1</sup></a></li>
+		
+			<li><a href="/categories/useful-website/" title="useful_website">useful_website<sup>1</sup></a></li>
+		
+			<li><a href="/categories/zhong/" title="zhong">zhong<sup>0</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/NodeJs/" title="NodeJs">NodeJs<sup>5</sup></a></li>
+		
+			<li><a href="/tags/git/" title="git">git<sup>2</sup></a></li>
+		
+			<li><a href="/tags/js/" title="js">js<sup>1</sup></a></li>
+		
+			<li><a href="/tags/mysql/" title="mysql">mysql<sup>1</sup></a></li>
+		
+			<li><a href="/tags/python/" title="python">python<sup>3</sup></a></li>
+		
+			<li><a href="/tags/ss/" title="ss">ss<sup>0</sup></a></li>
+		
+			<li><a href="/tags/ubuntu/" title="ubuntu">ubuntu<sup>1</sup></a></li>
+		
+			<li><a href="/tags/useful/" title="useful">useful<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">Tag Cloud</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/NodeJs/" style="font-size: 20.00px;">NodeJs</a><a href="/tags/git/" style="font-size: 15.00px;">git</a><a href="/tags/js/" style="font-size: 12.50px;">js</a><a href="/tags/mysql/" style="font-size: 12.50px;">mysql</a><a href="/tags/python/" style="font-size: 17.50px;">python</a><a href="/tags/ss/" style="font-size: 10.00px;">ss</a><a href="/tags/ubuntu/" style="font-size: 12.50px;">ubuntu</a><a href="/tags/useful/" style="font-size: 12.50px;">useful</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://robbinfan.com/" target="_blank" title="Robbin's Blog">Robbin's Blog</a></li>
+      <li><a href="http://www.zhengmenbb.com/" target="_blank" title="Zack's Blog">Zack's Blog</a></title>
+      <li><a href="http://hexo.io" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Welcome to Gavin Zhang&#39;s personal blog! <br/>
+			Welcome visiting</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/u/2113616192" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/yuexiahandao" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/yuexiahandao" target="_blank" title="github"></a>
+		
+		
+		<a href="https://www.facebook.com/gavinzhang" target="_blank" title="facebook"></a>
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2014 
+		
+		<a href="http://yuexiahandao.github.com" target="_blank" title="Gavin Zhang">Gavin Zhang</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'null', 'null');  
+ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>
